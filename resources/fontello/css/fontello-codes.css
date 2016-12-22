@@ -1,0 +1,13 @@
+
+.icon-right-dir:before { content: '\e800'; } /* '' */
+.icon-left-dir:before { content: '\e801'; } /* '' */
+.icon-play-circled2:before { content: '\e802'; } /* '' */
+.icon-basket:before { content: '\e804'; } /* '' */
+.icon-calendar:before { content: '\e805'; } /* '' */
+.icon-play-circled:before { content: '\f144'; } /* '' */
+.icon-cc-visa:before { content: '\f1f0'; } /* '' */
+.icon-cc-mastercard:before { content: '\f1f1'; } /* '' */
+.icon-cart-plus:before { content: '\f217'; } /* '' */
+.icon-cart-arrow-down:before { content: '\f218'; } /* '' */
+.icon-envelope-open:before { content: '\f2b6'; } /* '' */
+.icon-envelope-open-o:before { content: '\f2b7'; } /* '' */

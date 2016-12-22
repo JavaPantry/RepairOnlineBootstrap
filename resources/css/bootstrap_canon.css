@@ -1,0 +1,47 @@
+.panel-footer {
+    text-align: center;
+    position: fixed;/*absolute;*/
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.panel-footer ul li {
+    display: inline-block;
+}
+
+.footer ul li {
+    display: inline-block;
+}
+
+.line {
+    border-left: 1px solid #7fc0ff;
+    padding-left: 4px;
+}
+
+/*
+.panel-heading {
+    !*
+    margin-top: 10;
+    margin-bottom: 10;
+    *!
+
+    border-top-left-radius: 15px;
+    border-top-right-radius: 5px;
+}
+*/
+
+.panel-group.panel {
+    margin-top: 1em;
+    margin-bottom: 0;
+    border-radius: 20px;
+}
+
+.form-group.required .control-label:after {
+    content:"*";
+    color:red;
+    /*font-weight:bold;*/
+    position: absolute;
+    margin-left: 8px;
+    top: 1px;
+}

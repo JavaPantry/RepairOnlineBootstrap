@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Repair Online</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+    <script src="node_modules/jquery/dist/jquery.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
+    <link rel="stylesheet" type="text/css" href="resources/css/global_new.css">
+    <link rel="stylesheet" type="text/css" href="resources\css\bootstrap_canon.css">
+
+    <link rel="stylesheet" type="text/css"  href="bower_components/bootstrap-datepicker/css/datepicker3.css">
+    <script src="bower_components/modernizr/modernizr.js"></script>
+
+</head>
+<body>
+
+<nav class="navbar navbar-default header_bkg">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="http://www.canon.ca/inetCA/home?m=home"> <img src="resources/images/canon_main_logo.gif" alt="Canon Logo"></a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right"> <!---->
+                <li><a href="#">Support & Drivers</a></li>
+                <li><a href="#">Supplies & Accessories</a></li>
+                <!--<li><button class="btn btn-danger navbar-btn">Francais</button></li>-->
+                <li><button class="button_language" onClick="window.location.href='/euo/repairOnlineStep1';return false;">Francais&nbsp;&nbsp;&#xf144;</button></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+
+    <!--<div class="page-header">
+        <span class="right_header_block"></span>
+        <h3>Online Repair Tracking & Approval System</h3>
+    </div>-->
+    <div class="page-header">
+        <table class="header_bkg">
+            <tr>
+                <td>
+                    <span class="left_header_block"></span>
+                </td>
+                <td>
+                    <h3>Online Repair Tracking & Approval System</h3>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="panel-group">
+        <div class="panel panel-default">
+            <div class="panel-heading panelGroupHeadBkg">Step1. Request Estimate
+                <div class="numberedSteps">
+                    <span class="wizard_stepOn">1</span>
+                    <span class="wizard_stepOff">2</span>
+                    <span class="wizard_stepOff">3</span>
+                    <span class="wizard_stepOff">4</span>
+                </div>
+            </div>
+            <div class="panel-body">
+
+
+                <form class="form-horizontal">
+                    <div class="form-group required">
+                        <label class="control-label required col-sm-4" for="productFamily">Choose Product Family:</label>
+                        <div class="col-sm-8">
+                            <select class="form-control" id="productFamily" placeholder="Enter product family">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group required">
+                        <label class="control-label col-sm-4" for="productSeries">Choose Product Series:</label>
+                        <div class="col-sm-8">
+                            <select class="form-control" id="productSeries" placeholder="Enter product series">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group required">
+                        <label class="control-label col-sm-4" for="chooseModel">Choose Model:</label>
+                        <div class="col-sm-8">
+                            <select class="form-control" id="chooseModel" placeholder="Enter model">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-sm-4" for="SerialNumber">Serial Number:</label>
+                        <div class="col-sm-8">
+                            <input type="email" class="form-control" id="SerialNumber" placeholder="Enter Serial Number">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-sm-4" for="purchaseDate">Purchase Date:</label>
+                        <div class="input-group col-sm-8" id="purchaseDate">
+
+                            <div class="input-group-addon">
+                                <!--<i class="fa fa-calendar"></i>-->
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </div>
+
+                            <!-- this is where the magic happens -->
+                            <input type="text" class="date-picker form-control" data-date-start-view="decade" data-date-format="mm/dd/yy" data-date="02/01/99" value="02/01/99" name="birthday" placeholder="MM/DD/YY" />
+
+                        </div>
+                    </div>
+
+                    <div class="well well-sm" style="font-weight:bold; color: #4d4d4d;">Please note: If you do not find your model in the menus above, we recommend you call our
+                        Customer Support Center at 1-800-OK- CANON (1-800-652-2666) for further information.</div>
+
+
+
+                    <div class="form-group">
+                        <div class="col-sm-offset-4 col-sm-8">
+                            <!--<button type="submit" class="btn btn-default">Submit</button>-->
+                            <button type="button" class="button_example" onClick="window.location.href='/euo/repairOnlineStep1';return false">TRACK EXISTING REPAIR&nbsp;&nbsp;&#xe800;</button>
+                            <button type="button" class="button_example" onClick="window.location.href='/euo/repairOnlineStep1';return false">&nbsp;HOME&nbsp;</button>
+                            <button type="button" class="button_example" onClick="window.location.href='/euo/repairOnlineStep1';return false">NEXT STEP&nbsp;&nbsp;&#xe800;</button>
+                        </div>
+                    </div>
+
+
+
+
+                </form>
+
+            </div>
+        </div>
+
+        <footer class="panel-footer">  <!--class="panel-footer"-->
+            <ul >
+                <li class="line"><a href="/euo/repairOnlineLink?link=privacy">Privacy Policy<!--<s:text name="label.PrivacyPolicy" />--></a></li>
+                <li class="line"><a href="/euo/repairOnlineLink?link=term">Terms of Use<!--<s:text name="label.TermsOfUse" />--></a></li>
+                <li class="line"><a href="/euo/repairOnlineLink?link=help">Help / FAQ<!--<s:text name="label.HelpNFAQ" />--></a></li>
+            </ul>
+        </footer>
+
+
+    </div>
+
+
+</div>
+
+
+
+<script src="bower_components/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+<script src="bower_components/moment/moment.js"></script>
+<script src="bower_components/bootstrap-datepicker-mobile/bootstrap-datepicker-mobile.js"></script>
+
+</body>
+</html>
