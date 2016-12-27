@@ -148,6 +148,11 @@ GRAY: http://cssgradientbutton.com/?bg0=E6E6E6&bg1=CCCCCC&bg2=cdcdcd&bg3=b3b3b3&
 }
 
 
+.input-group#purchaseDate2{
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
 /*
 .required {
     color: #D60027;

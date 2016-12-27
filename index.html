@@ -11,8 +11,14 @@
     <link rel="stylesheet" type="text/css" href="resources/css/global_new.css">
     <link rel="stylesheet" type="text/css" href="resources\css\bootstrap_canon.css">
 
-    <link rel="stylesheet" type="text/css"  href="bower_components/bootstrap-datepicker/css/datepicker3.css">
+    <script type="text/javascript" src="resources/js/calendar.js"></script>
+
+
+    <!--<link rel="stylesheet" type="text/css"  href="bower_components/bootstrap-datepicker/css/datepicker3.css">-->
+    <link rel="stylesheet" type="text/css" href="node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker3.css">
     <script src="bower_components/modernizr/modernizr.js"></script>
+
+
 
 </head>
 <body>
@@ -60,6 +66,7 @@
 
     <div class="panel-group">
         <div class="panel panel-default">
+
             <div class="panel-heading panelGroupHeadBkg">Step1. Request Estimate
                 <div class="numberedSteps">
                     <span class="wizard_stepOn">1</span>
@@ -68,6 +75,17 @@
                     <span class="wizard_stepOff">4</span>
                 </div>
             </div>
+<!--
+            <div class="col-sm-8 panel-heading panelGroupHeadBkg">Step1. Request Estimate
+
+            </div>
+            <div class="col-sm-4 numberedSteps">
+                <span class="wizard_stepOn">1</span>
+                <span class="wizard_stepOff">2</span>
+                <span class="wizard_stepOff">3</span>
+                <span class="wizard_stepOff">4</span>
+            </div>
+-->
             <div class="panel-body">
 
 
@@ -118,19 +136,63 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label col-sm-4" for="purchaseDate">Purchase Date:</label>
+                        <label class="control-label col-sm-4" for="purchaseDate">Phone Purchase Date:</label>
                         <div class="input-group col-sm-8" id="purchaseDate">
-
                             <div class="input-group-addon">
-                                <!--<i class="fa fa-calendar"></i>-->
                                 <span class="glyphicon glyphicon-calendar"></span>
                             </div>
-
-                            <!-- this is where the magic happens -->
-                            <input type="text" class="date-picker form-control" data-date-start-view="decade" data-date-format="mm/dd/yy" data-date="02/01/99" value="02/01/99" name="birthday" placeholder="MM/DD/YY" />
+                            <!--<input type="text" class="date-picker form-control" data-date-start-view="decade" data-date-format="mm/dd/yy" data-date="02/01/99" value="02/01/99" name="birthday" placeholder="MM/DD/YY" />-->
+                            <input type="text" class="date-picker form-control" data-date-format="mm/dd/yy" name="purchaseDate" placeholder="MM/DD/YY" />
 
                         </div>
                     </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-sm-4" for="purchaseDate2">Boot Purchase Date:</label>
+                        <!-- define '.input-group#purchaseDate2' in resources/css/global_new.css -->
+                        <div class="input-group date col-sm-8" id="purchaseDate2">
+                            <input type="text" class="form-control" data-date-format="mm/dd/yy" placeholder="MM/DD/YY">
+                            <div class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-sm-4" for="purchaseDate3">Orig. Purchase Date:</label>
+                        <!-- define '.input-group#purchaseDate2' in resources/css/global_new.css -->
+                        <div class="input-group col-sm-8" id="purchaseDate3">
+                            <input type="text" class="form-control" data-date-format="mm/dd/yy" placeholder="MM/DD/YY" id='orderStartDate' value = "orderStartDate" name="orderStartDate">
+                            <div class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar" onClick="displayDatePicker('orderStartDate', this, 'ymd', '-'); return false;"></span>
+                                <!--<button type="button" class="button_example" onClick="displayDatePicker('orderStartDate', this, 'ymd', '-'); return false;">&nbsp;&#xe805;&nbsp;</button>-->
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <!--<div class="form-group">
+                        <label class="control-label col-sm-4" for="purchaseDate2">Purchase Date:</label>
+                        <div class="form-group col-sm-8" id="purchaseDate2">
+                            <div class="input-group date">
+                                <input type="text" class="form-control">
+                                <div class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>-->
+
+<!--                    <div class="form-group">
+                        <div class="input-group date">
+                            <input type="text" class="form-control">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                        </div>
+                    </div>-->
+
+
+
 
                     <div class="well well-sm" style="font-weight:bold; color: #4d4d4d;">Please note: If you do not find your model in the menus above, we recommend you call our
                         Customer Support Center at 1-800-OK- CANON (1-800-652-2666) for further information.</div>
@@ -170,9 +232,19 @@
 
 
 
-<script src="bower_components/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+<!--<script src="bower_components/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>-->
+<script src="node_modules/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+
 <script src="bower_components/moment/moment.js"></script>
 <script src="bower_components/bootstrap-datepicker-mobile/bootstrap-datepicker-mobile.js"></script>
 
+
+<script>
+    $('.input-group.date').datepicker({
+        todayBtn: true,
+        clearBtn: true,
+        toggleActive: true
+    });
+</script>
 </body>
 </html>

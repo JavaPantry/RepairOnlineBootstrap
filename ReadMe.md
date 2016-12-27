@@ -10,12 +10,19 @@ bootstrap code copied from c:\WebStormWS\Angular2Workspace\ExtendingBootstrap\no
 # Datapicker review
 [Find the best Date and Time Picker to work nice with any screen size article](https://themekraft.com/find-the-best-date-and-time-picker-to-work-nice-with-any-screen-size/)
 
-##Use native date picker if android or iPhone detected
+## Mobile detection native date picker
+Use native date picker if android or iPhone detected (this is simply an add-on for https://github.com/eternicode/bootstrap-datepicker )
 [bootstrap-datepicker-mobile use native date picker](http://niftylettuce.com/bootstrap-datepicker-mobile/)
 [GitHub for it ](https://github.com/niftylettuce/bootstrap-datepicker-mobile/blob/master/bower.json)
-to install: >C:\WebStormWS\RepairOnlineBootstrap>npm install bootstrap-datepicker-mobile -save
+to install: >C:\WebStormWS\RepairOnlineBootstrap>bower install -S bootstrap-datepicker-mobile
+
+> Switch to newer version bootstrap-datepicker v. 1.6.4 (original bootstrap-datepicker-mobile refers v.1.3.0)
+> to install: >C:\WebStormWS\RepairOnlineBootstrap>npm install bootstrap-datepicker@1.6.4 -save
+>   1. This will save module in node_modules
+>   2. Switch to new bootstrap-datepicker in index.html
 
 
+## not tested i.e. not visited
 [Bootstrap 3 Datepicker v4 Docs](http://eonasdan.github.io/bootstrap-datetimepicker/)
 [Bootstrap form component DateTime Picker](http://www.malot.fr/bootstrap-datetimepicker/)
 
