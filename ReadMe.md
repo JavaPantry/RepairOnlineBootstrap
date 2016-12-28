@@ -20,11 +20,23 @@ to install: >C:\WebStormWS\RepairOnlineBootstrap>bower install -S bootstrap-date
 > to install: >C:\WebStormWS\RepairOnlineBootstrap>npm install bootstrap-datepicker@1.6.4 -save
 >   1. This will save module in node_modules
 >   2. Switch to new bootstrap-datepicker in index.html
-
+> [gitHub with readme and references](https://github.com/uxsolutions/bootstrap-datepicker)
+> [doc & samples](https://bootstrap-datepicker.readthedocs.io/en/stable/markup.html#input)
 
 ## not tested i.e. not visited
 [Bootstrap 3 Datepicker v4 Docs](http://eonasdan.github.io/bootstrap-datetimepicker/)
 [Bootstrap form component DateTime Picker](http://www.malot.fr/bootstrap-datetimepicker/)
+
+#Validate input with bootstrap & jQuery
+[start Stackoverflow](http://stackoverflow.com/questions/18296267/form-validation-with-bootstrap-jquery)
+
+> [validation on this tutorial :](http://twitterbootstrap.org/bootstrap-form-validation)
+
+## jQuery validation plugin
+
+- [npm repo](https://www.npmjs.com/package/jquery-validation)
+- run `C:\WebStormWS\RepairOnlineBootstrap>npm install jquery-validation -save`
+
 
 # Buttons
 Canon red button custom button wizard:

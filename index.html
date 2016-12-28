@@ -6,7 +6,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+
     <script src="node_modules/jquery/dist/jquery.js"></script>
+    <script src="node_modules/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="node_modules/jquery-validation/dist/additional-methods.js"></script>
+
     <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
     <link rel="stylesheet" type="text/css" href="resources/css/global_new.css">
     <link rel="stylesheet" type="text/css" href="resources\css\bootstrap_canon.css">
@@ -89,7 +93,7 @@
             <div class="panel-body">
 
 
-                <form class="form-horizontal">
+                <form class="form-horizontal" id="repairFormStep1">
                     <div class="form-group required">
                         <label class="control-label required col-sm-4" for="productFamily">Choose Product Family:</label>
                         <div class="col-sm-8">
@@ -129,14 +133,19 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label col-sm-4" for="SerialNumber">Serial Number:</label>
+                        <label class="control-label col-sm-4" for="serialNumber">Serial Number:</label>
                         <div class="col-sm-8">
-                            <input type="email" class="form-control" id="SerialNumber" placeholder="Enter Serial Number">
+                            <input type="text" class="form-control"
+                                   id="serialNumber"
+                                   minlength="5" required="required"
+                                   placeholder="Enter Serial Number">
+                            <!---->
+
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label col-sm-4" for="purchaseDate">Phone Purchase Date:</label>
+                        <label class="control-label col-sm-4" for="purchaseDate">Native Purchase Date:</label>
                         <div class="input-group col-sm-8" id="purchaseDate">
                             <div class="input-group-addon">
                                 <span class="glyphicon glyphicon-calendar"></span>
@@ -148,7 +157,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label col-sm-4" for="purchaseDate2">Boot Purchase Date:</label>
+                        <label class="control-label col-sm-4" for="purchaseDate2">Bootstrap Purchase Date:</label>
                         <!-- define '.input-group#purchaseDate2' in resources/css/global_new.css -->
                         <div class="input-group date col-sm-8" id="purchaseDate2">
                             <input type="text" class="form-control" data-date-format="mm/dd/yy" placeholder="MM/DD/YY">
@@ -159,7 +168,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label col-sm-4" for="purchaseDate3">Orig. Purchase Date:</label>
+                        <label class="control-label col-sm-4" for="purchaseDate3">Original Purchase Date:</label>
                         <!-- define '.input-group#purchaseDate2' in resources/css/global_new.css -->
                         <div class="input-group col-sm-8" id="purchaseDate3">
                             <input type="text" class="form-control" data-date-format="mm/dd/yy" placeholder="MM/DD/YY" id='orderStartDate' value = "orderStartDate" name="orderStartDate">
@@ -244,6 +253,27 @@
         todayBtn: true,
         clearBtn: true,
         toggleActive: true
+    });
+
+/*fiddle http://jsfiddle.net/5WMff/ */
+    $(document).ready(function () {
+
+        $('#repairFormStep1').validate({
+            rules: {
+                serialNumber: {
+                    minlength: 2,
+                    required: true
+                }
+            },
+            highlight: function (element) {
+                $(element).closest('.form-group').removeClass('success').addClass('error');
+            },
+            success: function (element) {
+                element.text('OK!').addClass('valid')
+                    .closest('.form-group').removeClass('error').addClass('success');
+            }
+        });
+
     });
 </script>
 </body>
