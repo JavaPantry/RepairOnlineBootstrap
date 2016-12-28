@@ -30,9 +30,15 @@ to install: >C:\WebStormWS\RepairOnlineBootstrap>bower install -S bootstrap-date
 #Validate input with bootstrap & jQuery
 [start Stackoverflow](http://stackoverflow.com/questions/18296267/form-validation-with-bootstrap-jquery)
 
-> [validation on this tutorial :](http://twitterbootstrap.org/bootstrap-form-validation)
 
-## jQuery validation plugin
+## Bootstrap validator 
+
+- [npm module repo](https://www.npmjs.com/package/bootstrap-validator)
+- run `npm install bootstrap-validator -save`
+- [github](http://1000hz.github.io/bootstrap-validator/)
+
+
+## jQuery validation plugin (removed)
 
 - [npm repo](https://www.npmjs.com/package/jquery-validation)
 - run `C:\WebStormWS\RepairOnlineBootstrap>npm install jquery-validation -save`
