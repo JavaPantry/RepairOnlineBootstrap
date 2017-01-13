@@ -121,10 +121,10 @@ GRAY: http://cssgradientbutton.com/?bg0=E6E6E6&bg1=CCCCCC&bg2=cdcdcd&bg3=b3b3b3&
     width: 2em;
     /*background-color: #DB0435; background-image: -webkit-gradient(linear, left , right, from(#DB0435), to(#6D0019));*/
     background-image: -webkit-linear-gradient(left, #DB0435, #6D0019);
-    /*background-image: -moz-linear-gradient(left, #DB0435, #6D0019);*/
+    background-image: -moz-linear-gradient(left, #DB0435, #6D0019);
     background-image: -ms-linear-gradient(left, #DB0435, #6D0019);
-    /*background-image: -o-linear-gradient(left, #DB0435, #6D0019);
-    background-image: linear-gradient(to left, #DB0435, #6D0019);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#DB0435, endColorstr=#6D0019);*/
+    background-image: -o-linear-gradient(left, #DB0435, #6D0019);
+    background-image: linear-gradient(to left, #DB0435, #6D0019);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#DB0435, endColorstr=#6D0019);
 }
 
 .panelGroupHeadBkg{
@@ -148,7 +148,10 @@ GRAY: http://cssgradientbutton.com/?bg0=E6E6E6&bg1=CCCCCC&bg2=cdcdcd&bg3=b3b3b3&
 }
 
 
-.input-group#purchaseDate2{
+.input-group#purchaseDate,
+.input-group#purchaseDate2,
+.input-group#purchaseDate3
+{
     padding-right: 15px;
     padding-left: 15px;
 }

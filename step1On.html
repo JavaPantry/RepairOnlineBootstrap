@@ -1,0 +1,131 @@
+<div class="panel-group">
+    <div class="panel panel-default">
+
+        <!--label.step1.on.top.title-->
+        <div class="panel-heading panelGroupHeadBkg">Repair Request (continued)
+            <div class="numberedSteps">
+                <span class="wizard_stepOn">1</span>
+                <span class="wizard_stepOff">2</span>
+                <span class="wizard_stepOff">3</span>
+                <span class="wizard_stepOff">4</span>
+            </div>
+        </div>
+
+        <div class="panel-body">
+
+        <div class="well well-sm" style="color: #4d4d4d;">
+            Please note that this repair quote does not include shipping and taxes if applicable. <!--label.step1.on.top.msg-->
+        </div>
+        <!--<form id="track_existing_repair" class="clearfix"
+              method="post"
+              action="/euo/repairOnlineStep2" >-->
+
+            <form class="form-horizontal" data-toggle="validator" id="track_existing_repair"
+                  onsubmit="alert('submitted');">
+                <fieldset>
+
+                    <!-- Form Error Text STARTS -->
+                    <!--<span class="midblack" id="ErrorSummary"></span>-->
+
+                    <!--<label id="lbl_model"><s:text name="lable.PageStep1On.Model"/></label>
+                        <c:out value="${repairRecord.OURMDNAM}"/> -->
+                    <div class="form-group">
+                        <label class="control-label col-sm-4" for="modelField">Model:</label>
+                        <div class="col-sm-8">
+                            <!--<input type="text" class="form-control" id="modelField">-->
+                            <p class="form-control-static" id="modelField">someone@example.com</p>
+                        </div>
+                    </div>
+
+
+                    <!--<label id="lbl_serialno"><s:text name="lable.PageStep1.chooseSerial"/></label>
+                        <c:out value="${repairRecord.OURSRNUM}"/>-->
+                    <div class="form-group">
+                        <label class="control-label col-sm-4" for="serialNumberField">Serial Number:</label>
+                        <div class="col-sm-8">
+                            <!--<input type="text" class="form-control" id="serialNumberField">-->
+                            <p class="form-control-static" id="serialNumberField">someone@example.com</p>
+                        </div>
+                    </div>
+
+
+                    <!--<label id="lbl_model"><s:text name="lable.PageStep1On.serviceType"/></label>
+                        <c:out value="${repairRecord.warrantStatus}"/>-->
+                    <div class="form-group">
+                        <label class="control-label col-sm-4" for="warrantStatusField">Service Type:</label>
+                        <div class="col-sm-8">
+                            <!--<input type="text" class="form-control" id="warrantStatusField">-->
+                            <p class="form-control-static" id="warrantStatusField">someone@example.com</p>
+                        </div>
+                    </div>
+
+
+                    <!--<label id="lbl_model"><s:text name="lable.PageStep1On.estimateCost"/></label></td>
+                        <fmt:formatNumber type="currency">
+                            ${repairRecord.labourCost}
+                        </fmt:formatNumber>
+                        <s:set var="servicefee">${repairRecord.labourCost}</s:set>
+                          <s:if test='#servicefee != 0'>
+                               &nbsp;&nbsp;<s:text name="lable.PageStep1On.plusTax"/>
+                          </s:if>
+                    -->
+                    <div class="form-group">
+                        <label class="control-label col-sm-4" for="estimateCostField">Estimate repair Cost:</label>
+                        <div class="col-sm-8">
+                            <!--<input type="text" class="form-control" id="estimateCostField">-->
+                            <p class="form-control-static" id="estimateCostField">someone@example.com</p>
+                        </div>
+                    </div>
+
+
+                    <div class="well well-sm" style="color: #4d4d4d;"> <!--font-weight:bold;-->
+                        <!--label.step1.on.bottom.msg.1	= -->Repair completion is estimated to be 7-10 business days after we receive your product.  Actual times may vary due to seasonal volumes, repairs requiring special parts or lengthy testing for unusual / intermittent problems.
+                        <p/>
+                        <!--label.step1.on.bottom.msg.2	= -->The Canon Canada repair facility may either repair your product or exchange it for a new / refurbished product of the same or equivalent model.  Defective parts in this product will be repaired or replaced with new or comparable rebuilt parts.
+                        <p/>
+                        <!--label.step1.on.bottom.msg.3	= -->In the unlikely event additional damage is found during the inspection process, such as moisture / liquid, sand, dust, corrosion, battery leakage or impact damage, an estimate will be sent to you for approval.
+                        <p/>
+                        <!--label.step1.on.bottom.msg.4	= -->Canon Canada Inc \u201CCanon\u201D reserves the right to ship such item(s) at Customer\u2019s expense, along with Canon\u2019s invoice for payment for any repaired item(s).  Canon shall not be responsible for any repaired or non-repaired item(s) left for more than 30 days.
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-offset-4 col-sm-8">
+                            <!--<button type="submit" class="btn btn-default">Submit</button>-->
+                            <button type="button" class="button_example" onClick="window.location.href='/euo/repairOnlineStep1?backflag=true';return false">&#xe801;&nbsp;&nbsp;BACK&nbsp;</button>
+                            <button type="button" class="button_example" onClick="window.location.href='/euo/repairOnlineStep1';return false">&nbsp;NEXT&nbsp;&nbsp;&nbsp;&#xe800;</button>
+                            <!--<button type="button" class="button_example" onClick="window.location.href='/euo/repairOnlineStep1';return false">Cancel&nbsp;&nbsp;&#xe800;</button>-->
+                            <button type="submit" class="button_example">&nbsp;CANCEL&nbsp;</button>
+                        </div>
+                    </div>
+
+
+                </fieldset>
+
+
+                    <!--<div id="static_text_area">
+                        <p align="center">
+                            <input type="image"
+                                   onclick="window.location.href='/euo/repairOnlineStep1?backflag=true';return false;"
+                                   src="/euo/resources_euo/<s:text name='img.back' />"
+                                   alt="<s:text name='label.back'/>"
+                                   title="<s:text name='label.back'/>" >
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="image"
+                                   src="/euo/resources_euo/<s:text name='img.next.step' />"
+                                   alt="<s:text name='title.next.step' />"
+                                   title="<s:text name='title.next.step' />" >
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="image"
+                                   onclick="JavaScript:confirm_entry('<s:text name='alert.cancel'/>'); return false;"
+                                   src="/euo/resources_euo/<s:text name='img.cancel' />"
+                                   alt="<s:text name='label.cancel'/>"
+                                   title="<s:text name='label.cancel'/>" >
+                        </p>
+                    </div>-->
+
+            </form>
+        </div> <!--closing div class="panel-body" -->
+    </div> <!--closing div class="panel-group"-->
+</div> <!--closing div class="panel panel-default"-->
+
+<h3>end of Step1 on</h3>

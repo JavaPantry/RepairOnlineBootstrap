@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Repair Online</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+
+    <script src="node_modules/jquery/dist/jquery.js"></script>
+
+    <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="node_modules\bootstrap-validator\dist\validator.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="resources/css/global_new.css">
+    <link rel="stylesheet" type="text/css" href="resources\css\bootstrap_canon.css">
+
+
+
+    <script type="text/javascript" src="resources/js/calendar.js"></script>
+    <link rel="stylesheet" type="text/css" href="resources/js/calendar.css"/>
+
+    <!--<link rel="stylesheet" type="text/css"  href="bower_components/bootstrap-datepicker/css/datepicker3.css">-->
+    <link rel="stylesheet" type="text/css" href="node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker3.css">
+    <script src="bower_components/modernizr/modernizr.js"></script>
+
+
+
+</head>
+<body>
+
+<!-- doesn't work <link rel="import" href="./headerTmpl.html"/>-->
+
+<div id="headerTmplHolder"></div>
+
+<div class="container">
+    <div class="page-header">
+        <table class="header_bkg">
+            <tr>
+                <td>
+                    <span class="left_header_block"></span>
+                </td>
+                <td>
+                    <h3>Online Repair Tracking & Approval System</h3>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="bodyTmplHolder"></div>
+
+    <footer class="panel-footer">  <!--class="panel-footer"-->
+        <ul >
+            <li class="line"><a href="/euo/repairOnlineLink?link=privacy">Privacy Policy<!--<s:text name="label.PrivacyPolicy" />--></a></li>
+            <li class="line"><a href="/euo/repairOnlineLink?link=term">Terms of Use<!--<s:text name="label.TermsOfUse" />--></a></li>
+            <li class="line"><a href="/euo/repairOnlineLink?link=help">Help / FAQ<!--<s:text name="label.HelpNFAQ" />--></a></li>
+        </ul>
+    </footer>
+</div>
+
+
+
+<!--<script src="bower_components/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>-->
+<script src="node_modules/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+
+<script src="bower_components/moment/moment.js"></script>
+<script src="bower_components/bootstrap-datepicker-mobile/bootstrap-datepicker-mobile.js"></script>
+
+
+<script>
+    $('.input-group.date').datepicker({
+        todayBtn: true,
+        clearBtn: true,
+        toggleActive: true
+    });
+
+</script>
+
+<script>
+    $(function(){
+        $("#headerTmplHolder").load("./headerTmpl.html");
+        $("#bodyTmplHolder").load("./step1.html");
+    });
+</script>
+
+
+</body>
+</html>

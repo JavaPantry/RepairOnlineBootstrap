@@ -94,3 +94,25 @@ border:1px solid #77021D;-webkit-box-shadow: #FFFFFF 0px 0px 1px inset;-moz-box-
  background-image: -o-linear-gradient(top, #cdcdcd, #b3b3b3);
  background-image: linear-gradient(to bottom, #cdcdcd, #b3b3b3);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#cdcdcd, endColorstr=#b3b3b3);
 }
+
+## Include html into html
+
+- [with jquery](http://stackoverflow.com/questions/8988855/include-another-html-file-in-a-html-file)
+- [with w3data.js](http://www.w3schools.com/howto/howto_html_include.asp)
+- [HTML5 import](https://www.html5rocks.com/en/tutorials/webcomponents/imports/)  `<link href="extern.html" rel="import" />`
+- [select the template file](http://www.hongkiat.com/blog/html-import/)
+- [Simple Markup in the Header](http://www.noupe.com/development/html5-imports-import-html-files-into-html-files-83467.html)
+
+
+# template 
+
+<!--
+< DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+</body>
+</html>-->
