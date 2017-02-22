@@ -3,7 +3,7 @@
     $(document).ready(function(){
         //typeahead init
         // Defining the local dataset
-        var cars = [
+        var productData = [
             {"id":1,"name":"EF 100-400mm f/4.5-5.6L IS USM"},
             {"id":2,"name":"EF 200-500mm f/4.5-5.6L IS USM"},
             {"id":3,"name":"EF 300-500mm f/4.5-5.6L IS USM"}
@@ -55,10 +55,10 @@
 
 
         // Constructing the suggestion engine
-        var cars = new Bloodhound({
+        var bloodhoundDS = new Bloodhound({
             datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
             queryTokenizer: Bloodhound.tokenizers.whitespace,
-            local: cars
+            local: productData
         });
 
         // Initializing the typeahead
@@ -69,13 +69,11 @@
             },
             {
                 name: 'cars',
-                source: cars.ttAdapter(),
+                source: bloodhoundDS.ttAdapter(),
                 displayKey: 'name',
                 limit: 20
             });
         //end of typeahead init
-
-
 
     });
 </script>
