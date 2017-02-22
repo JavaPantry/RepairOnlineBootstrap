@@ -1,9 +1,85 @@
 <script  type="text/javascript" src="resources\js\typeahead.bundle.js"></script>
-<!--<script type="text/javascript">
+<script type="text/javascript">
     $(document).ready(function(){
-        // typeahead init here moved
+        //typeahead init
+        // Defining the local dataset
+        var cars = [
+            {"id":1,"name":"EF 100-400mm f/4.5-5.6L IS USM"},
+            {"id":2,"name":"EF 200-500mm f/4.5-5.6L IS USM"},
+            {"id":3,"name":"EF 300-500mm f/4.5-5.6L IS USM"}
+            ];
+
+        /*"Compact Digital Camera","EOS SLR Camera Systems","Camcorders","EOS Digital SLR Camera",
+         "High Definition","PowerShot A Series","Battery Grip","EOS Lenses","PowerShot G Series",
+         "Standard Definition DVD","EOS Flashes","PowerShot S Series","Standard Definition Flash",
+         "PowerShot SD Series","Standard Definition MiniDV","Wireless File Transmitters","PowerShot SX Series",
+         "Professional Video Camcorder","PowerShot ELPH Series","Other PowerShot","Powershot S95",
+         "PowerShot S90","BG-E11","BG-E2n","BG-E5","BG-E6","BG-E7","BG-E8","BG-E9",
+         "EF 100-400mm f/4.5-5.6L IS USM","EF 100mm f/2 USM","EF 100mm f/2.8L Macro IS USM",
+         "EF 135mm f/2.0L USM ","EF 135mm f/2.8 with Softfocus ","EF 14mm f/2.8L II USM ",
+         "EF 15mm f/2.8 fisheye ","EF 16-35mm f/2.8L USM II","EF 17-40mm f/4L ",
+         "EF 180mm f/3.5L Macro USM ","EF 200mm f/2L IS USM","EF 20mm f/2.8 USM ",
+         "EF 24-105mm f/4L IS USM ","EF 24-70mm f/2.8L USM ","EF 24mm f/1.4L II USM ",
+         "EF 24mm f/2.8","EF 28-135mm f/3.5-5.6 IS USM","EF 28-300mm f/3.5-5.6L IS USM ",
+         "EF 28mm f/1.8 USM ","EF 28mm f/2.8","EF 300mm f/2.8L IS USM","EF 300mm f/2.8L IS USM II ",
+         "EF 300mm f/4L IS USM","EF 35mm f/1.4L USM","EF 35mm f/2 ","EF 400mm f/2.8L IS USM",
+         "EF 400mm f/4 DO IS USM","EF 400mm f/5.6L USM ","EF 500mm f/4L IS USM","EF 50mm f/1.2L USM",
+         "EF 50mm f/1.4 USM ","EF 50mm f/1.8 II","EF 600mm f/4L IS USM","EF 600mm f/4L IS USM II ",
+         "EF 70-200mm f/2.8L IS USM ","EF 70-200mm f/2.8L USM","EF 70-200mm f/4L USM","EF 70-300mm f/4-5.6L IS USM",
+         "EF 70-300mm f/4.5-5.6DO IS USM","EF 75-300mm f/4-5.6 III USM ","EF 8-15mm f/4L fisheye","EF 800mm f/5.6L IS USM",
+         "EF 85mm f/1.2L II USM ","EF 85mm f/1.8 USM ","EF-S 10-22mm f/3.5-4.5 USM","EF-S 15-85mm f/3.5-5.6 IS USM",
+         "EF-S 17-55mm f/2.8 IS USM ","EF-S 17-85mm f/4-5.6 IS USM ","EF-S 18-135mm f/3.5-5.6 IS","EF-S 18-200mm f/3.5-5.6 IS",
+         "EF-S 18-55mm f/3.5-5.6 IS","EF-S 55-250mm f/4-5.6 IS","EF-S 60mm f/2.8 Macro USM ","EOS 1D Mark IV",
+         "EOS 1Ds Mark III","EOS 50D ","EOS 5D Mark II","EOS 5D Mark III ",
+         "EOS 60D ","EOS 60Da","EOS 7D","EOS Rebel T1i","EOS Rebel T2i","EOS Rebel T3i",
+         "EOS Rebel XSi","Extender EF 1.4x II","Extender EF 1.4x III","Extender EF 2.0x II",
+         "Extender EF 2.0x III","FS30 ","FS300","FS31 ","FS40 ","FS400",
+         "GL2","MP-E 65mm f/2.8 1-5X Macro","Powershot A1200 ","PowerShot A1300 ",
+         "PowerShot A2200 ","PowerShot A2300 ","PowerShot A2400 IS","PowerShot A3300 IS",
+         "PowerShot A3400 IS","PowerShot A4000 IS","Powershot A800","PowerShot A810",
+         , "PowerShot D10","PowerShot ELPH 110 HS","PowerShot ELPH 320HS","PowerShot ELPH 500 HS",
+         "PowerShot ELPH 530 HS","Powershot G1 X","PowerShot G11","PowerShot G12","PowerShot SD1300 IS",
+         "PowerShot SD1400 IS","PowerShot SD3500 IS","PowerShot SD4000 IS","PowerShot SD4500 IS",
+         "PowerShot SX150 IS","PowerShot SX20 IS","PowerShot SX200 IS","Powershot SX210 IS",
+         "PowerShot SX220 HS","PowerShot SX230 HS","PowerShot SX240 HS","PowerShot SX260 HS",
+         "PowerShot SX30 IS","SPEEDLITE 270EX II","SPEEDLITE 320EX","SPEEDLITE 430EX II",
+         "SPEEDLITE 580EX II","SPEEDLITE 600EX-RT","TS-E 17mm f/4L","TS-E 24mm f/3.5L",
+         "TS-E 24mm f/3.5L II","TS-E 45mm f/2.8 ","TS-E 90mm f/2.8 ","VIXIA HF G10",
+         "VIXIA HF M30","VIXIA HF M300","VIXIA HF M31","VIXIA HF M40",
+         "VIXIA HF M400","VIXIA HF M41","VIXIA HF M50","VIXIA HF M500","VIXIA HF M52",
+         "VIXIA HF R10","VIXIA HF R100","VIXIA HF R11","VIXIA HF R20","VIXIA HF R200",
+         "VIXIA HF R21","VIXIA HF R30","VIXIA HF R300","VIXIA HF R32","VIXIA HF S20",
+         "VIXIA HF S200","VIXIA HF S21","VIXIA HF S30","VIXIA HV40","WFT-E7A",
+         "XF100","XF105","XF300","XF305","XH A1S","XH G1S","XL H1",
+         "XL H1A","XL H1S","XL2"*/
+
+
+        // Constructing the suggestion engine
+        var cars = new Bloodhound({
+            datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+            queryTokenizer: Bloodhound.tokenizers.whitespace,
+            local: cars
+        });
+
+        // Initializing the typeahead
+        $('#scrollable-dropdown-menu .typeahead').typeahead({
+                hint: true,
+                highlight: true, /* Enable substring highlighting */
+                minLength: 1 /* Specify minimum characters required for showing result */
+            },
+            {
+                name: 'cars',
+                source: cars.ttAdapter(),
+                displayKey: 'name',
+                limit: 20
+            });
+        //end of typeahead init
+
+
+
     });
-</script>-->
+</script>
+
 <style type="text/css">
 
     .twitter-typeahead {
@@ -82,7 +158,7 @@
 
 
                     <div class="form-group required">
-                        <label class="control-label required col-sm-4" for="ProductTypeahead"><s:text name="lable.PageStep1.chooseFamily"/>:</label>
+                        <label class="control-label required col-sm-4" for="ProductTypeahead">Choose Product Family:</label>
                         <div id="scrollable-dropdown-menu" class="col-sm-8">
                             <input type="text" id="ProductTypeahead" class="form-control typeahead" autocomplete="off" spellcheck="false" placeholder="Type your Product"
                                    data-error="Product required" required>
@@ -266,70 +342,7 @@
 
     window.onload = function()
     {
-        // Defining the local dataset
-        var cars = ["Compact Digital Camera","EOS SLR Camera Systems","Camcorders","EOS Digital SLR Camera",
-            "High Definition","PowerShot A Series","Battery Grip","EOS Lenses","PowerShot G Series",
-            "Standard Definition DVD","EOS Flashes","PowerShot S Series","Standard Definition Flash",
-            "PowerShot SD Series","Standard Definition MiniDV","Wireless File Transmitters","PowerShot SX Series",
-            "Professional Video Camcorder","PowerShot ELPH Series","Other PowerShot","Powershot S95",
-            "PowerShot S90","BG-E11","BG-E2n","BG-E5","BG-E6","BG-E7","BG-E8","BG-E9",
-            "EF 100-400mm f/4.5-5.6L IS USM","EF 100mm f/2 USM","EF 100mm f/2.8L Macro IS USM",
-            "EF 135mm f/2.0L USM ","EF 135mm f/2.8 with Softfocus ","EF 14mm f/2.8L II USM ",
-            "EF 15mm f/2.8 fisheye ","EF 16-35mm f/2.8L USM II","EF 17-40mm f/4L ",
-            "EF 180mm f/3.5L Macro USM ","EF 200mm f/2L IS USM","EF 20mm f/2.8 USM ",
-            "EF 24-105mm f/4L IS USM ","EF 24-70mm f/2.8L USM ","EF 24mm f/1.4L II USM ",
-            "EF 24mm f/2.8","EF 28-135mm f/3.5-5.6 IS USM","EF 28-300mm f/3.5-5.6L IS USM ",
-            "EF 28mm f/1.8 USM ","EF 28mm f/2.8","EF 300mm f/2.8L IS USM","EF 300mm f/2.8L IS USM II ",
-            "EF 300mm f/4L IS USM","EF 35mm f/1.4L USM","EF 35mm f/2 ","EF 400mm f/2.8L IS USM",
-            "EF 400mm f/4 DO IS USM","EF 400mm f/5.6L USM ","EF 500mm f/4L IS USM","EF 50mm f/1.2L USM",
-            "EF 50mm f/1.4 USM ","EF 50mm f/1.8 II","EF 600mm f/4L IS USM","EF 600mm f/4L IS USM II ",
-            "EF 70-200mm f/2.8L IS USM ","EF 70-200mm f/2.8L USM","EF 70-200mm f/4L USM","EF 70-300mm f/4-5.6L IS USM",
-            "EF 70-300mm f/4.5-5.6DO IS USM","EF 75-300mm f/4-5.6 III USM ","EF 8-15mm f/4L fisheye","EF 800mm f/5.6L IS USM",
-            "EF 85mm f/1.2L II USM ","EF 85mm f/1.8 USM ","EF-S 10-22mm f/3.5-4.5 USM","EF-S 15-85mm f/3.5-5.6 IS USM",
-            "EF-S 17-55mm f/2.8 IS USM ","EF-S 17-85mm f/4-5.6 IS USM ","EF-S 18-135mm f/3.5-5.6 IS","EF-S 18-200mm f/3.5-5.6 IS",
-            "EF-S 18-55mm f/3.5-5.6 IS","EF-S 55-250mm f/4-5.6 IS","EF-S 60mm f/2.8 Macro USM ","EOS 1D Mark IV",
-            "EOS 1Ds Mark III","EOS 50D ","EOS 5D Mark II","EOS 5D Mark III ",
-            "EOS 60D ","EOS 60Da","EOS 7D","EOS Rebel T1i","EOS Rebel T2i","EOS Rebel T3i",
-            "EOS Rebel XSi","Extender EF 1.4x II","Extender EF 1.4x III","Extender EF 2.0x II",
-            "Extender EF 2.0x III","FS30 ","FS300","FS31 ","FS40 ","FS400",
-            "GL2","MP-E 65mm f/2.8 1-5X Macro","Powershot A1200 ","PowerShot A1300 ",
-            "PowerShot A2200 ","PowerShot A2300 ","PowerShot A2400 IS","PowerShot A3300 IS",
-            "PowerShot A3400 IS","PowerShot A4000 IS","Powershot A800","PowerShot A810",
-            , "PowerShot D10","PowerShot ELPH 110 HS","PowerShot ELPH 320HS","PowerShot ELPH 500 HS",
-            "PowerShot ELPH 530 HS","Powershot G1 X","PowerShot G11","PowerShot G12","PowerShot SD1300 IS",
-            "PowerShot SD1400 IS","PowerShot SD3500 IS","PowerShot SD4000 IS","PowerShot SD4500 IS",
-            "PowerShot SX150 IS","PowerShot SX20 IS","PowerShot SX200 IS","Powershot SX210 IS",
-            "PowerShot SX220 HS","PowerShot SX230 HS","PowerShot SX240 HS","PowerShot SX260 HS",
-            "PowerShot SX30 IS","SPEEDLITE 270EX II","SPEEDLITE 320EX","SPEEDLITE 430EX II",
-            "SPEEDLITE 580EX II","SPEEDLITE 600EX-RT","TS-E 17mm f/4L","TS-E 24mm f/3.5L",
-            "TS-E 24mm f/3.5L II","TS-E 45mm f/2.8 ","TS-E 90mm f/2.8 ","VIXIA HF G10",
-            "VIXIA HF M30","VIXIA HF M300","VIXIA HF M31","VIXIA HF M40",
-            "VIXIA HF M400","VIXIA HF M41","VIXIA HF M50","VIXIA HF M500","VIXIA HF M52",
-            "VIXIA HF R10","VIXIA HF R100","VIXIA HF R11","VIXIA HF R20","VIXIA HF R200",
-            "VIXIA HF R21","VIXIA HF R30","VIXIA HF R300","VIXIA HF R32","VIXIA HF S20",
-            "VIXIA HF S200","VIXIA HF S21","VIXIA HF S30","VIXIA HV40","WFT-E7A",
-            "XF100","XF105","XF300","XF305","XH A1S","XH G1S","XL H1",
-            "XL H1A","XL H1S","XL2"];
 
-        // Constructing the suggestion engine
-        var cars = new Bloodhound({
-            datumTokenizer: Bloodhound.tokenizers.whitespace,
-            queryTokenizer: Bloodhound.tokenizers.whitespace,
-            local: cars
-        });
-
-        // Initializing the typeahead
-        $('#scrollable-dropdown-menu .typeahead').typeahead({
-                hint: true,
-                highlight: true, /* Enable substring highlighting */
-                minLength: 1 /* Specify minimum characters required for showing result */
-            },
-            {
-                name: 'cars',
-                source: cars,
-                limit: 20
-            });
-        //end of paste
     }
 
 
