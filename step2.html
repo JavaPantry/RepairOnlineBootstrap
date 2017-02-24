@@ -1,15 +1,164 @@
+<script type="text/javascript" src="resources\js\bootstrap3-typeahead.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        //typeahead init
+        // Defining the local dataset
+        var productData = [
+            {"id":1,"name":"EF 100-400mm f/4.5-5.6L IS USM"},
+            {"id":2,"name":"EF 200-500mm f/4.5-5.6L IS USM"},
+            {"id":3,"name":"EF 300-500mm f/4.5-5.6L IS USM"},
+            {"id":4,"name":"EF 150-1500mm f/4.5-5.6L IS USM"},
+            {"id":5,"name":"EF 230-500mm f/4.5-5.6L IS USM"},
+            {"id":6,"name":"EF 220-500mm f/4.5-5.6L IS USM"},
+            {"id":7,"name":"EF 350-500mm f/4.5-5.6L IS USM"},
+            {"id":8,"name":"EF 430-500mm f/4.5-5.6L IS USM"},
+            {"id":9,"name":"EF 670-500mm f/4.5-5.6L IS USM"},
+            {"id":10,"name":"EF 600-500mm f/4.5-5.6L IS USM"}
+            ];
 
-<!--<script type="text/javascript" src="/euo/resources/js/repairOnlineStep2Bs.js"></script>-->
+        /*"Compact Digital Camera","EOS SLR Camera Systems","Camcorders","EOS Digital SLR Camera",
+         "High Definition","PowerShot A Series","Battery Grip","EOS Lenses","PowerShot G Series",
+         "Standard Definition DVD","EOS Flashes","PowerShot S Series","Standard Definition Flash",
+         "PowerShot SD Series","Standard Definition MiniDV","Wireless File Transmitters","PowerShot SX Series",
+         "Professional Video Camcorder","PowerShot ELPH Series","Other PowerShot","Powershot S95",
+         "PowerShot S90","BG-E11","BG-E2n","BG-E5","BG-E6","BG-E7","BG-E8","BG-E9",
+         "EF 100-400mm f/4.5-5.6L IS USM","EF 100mm f/2 USM","EF 100mm f/2.8L Macro IS USM",
+         "EF 135mm f/2.0L USM ","EF 135mm f/2.8 with Softfocus ","EF 14mm f/2.8L II USM ",
+         "EF 15mm f/2.8 fisheye ","EF 16-35mm f/2.8L USM II","EF 17-40mm f/4L ",
+         "EF 180mm f/3.5L Macro USM ","EF 200mm f/2L IS USM","EF 20mm f/2.8 USM ",
+         "EF 24-105mm f/4L IS USM ","EF 24-70mm f/2.8L USM ","EF 24mm f/1.4L II USM ",
+         "EF 24mm f/2.8","EF 28-135mm f/3.5-5.6 IS USM","EF 28-300mm f/3.5-5.6L IS USM ",
+         "EF 28mm f/1.8 USM ","EF 28mm f/2.8","EF 300mm f/2.8L IS USM","EF 300mm f/2.8L IS USM II ",
+         "EF 300mm f/4L IS USM","EF 35mm f/1.4L USM","EF 35mm f/2 ","EF 400mm f/2.8L IS USM",
+         "EF 400mm f/4 DO IS USM","EF 400mm f/5.6L USM ","EF 500mm f/4L IS USM","EF 50mm f/1.2L USM",
+         "EF 50mm f/1.4 USM ","EF 50mm f/1.8 II","EF 600mm f/4L IS USM","EF 600mm f/4L IS USM II ",
+         "EF 70-200mm f/2.8L IS USM ","EF 70-200mm f/2.8L USM","EF 70-200mm f/4L USM","EF 70-300mm f/4-5.6L IS USM",
+         "EF 70-300mm f/4.5-5.6DO IS USM","EF 75-300mm f/4-5.6 III USM ","EF 8-15mm f/4L fisheye","EF 800mm f/5.6L IS USM",
+         "EF 85mm f/1.2L II USM ","EF 85mm f/1.8 USM ","EF-S 10-22mm f/3.5-4.5 USM","EF-S 15-85mm f/3.5-5.6 IS USM",
+         "EF-S 17-55mm f/2.8 IS USM ","EF-S 17-85mm f/4-5.6 IS USM ","EF-S 18-135mm f/3.5-5.6 IS","EF-S 18-200mm f/3.5-5.6 IS",
+         "EF-S 18-55mm f/3.5-5.6 IS","EF-S 55-250mm f/4-5.6 IS","EF-S 60mm f/2.8 Macro USM ","EOS 1D Mark IV",
+         "EOS 1Ds Mark III","EOS 50D ","EOS 5D Mark II","EOS 5D Mark III ",
+         "EOS 60D ","EOS 60Da","EOS 7D","EOS Rebel T1i","EOS Rebel T2i","EOS Rebel T3i",
+         "EOS Rebel XSi","Extender EF 1.4x II","Extender EF 1.4x III","Extender EF 2.0x II",
+         "Extender EF 2.0x III","FS30 ","FS300","FS31 ","FS40 ","FS400",
+         "GL2","MP-E 65mm f/2.8 1-5X Macro","Powershot A1200 ","PowerShot A1300 ",
+         "PowerShot A2200 ","PowerShot A2300 ","PowerShot A2400 IS","PowerShot A3300 IS",
+         "PowerShot A3400 IS","PowerShot A4000 IS","Powershot A800","PowerShot A810",
+         , "PowerShot D10","PowerShot ELPH 110 HS","PowerShot ELPH 320HS","PowerShot ELPH 500 HS",
+         "PowerShot ELPH 530 HS","Powershot G1 X","PowerShot G11","PowerShot G12","PowerShot SD1300 IS",
+         "PowerShot SD1400 IS","PowerShot SD3500 IS","PowerShot SD4000 IS","PowerShot SD4500 IS",
+         "PowerShot SX150 IS","PowerShot SX20 IS","PowerShot SX200 IS","Powershot SX210 IS",
+         "PowerShot SX220 HS","PowerShot SX230 HS","PowerShot SX240 HS","PowerShot SX260 HS",
+         "PowerShot SX30 IS","SPEEDLITE 270EX II","SPEEDLITE 320EX","SPEEDLITE 430EX II",
+         "SPEEDLITE 580EX II","SPEEDLITE 600EX-RT","TS-E 17mm f/4L","TS-E 24mm f/3.5L",
+         "TS-E 24mm f/3.5L II","TS-E 45mm f/2.8 ","TS-E 90mm f/2.8 ","VIXIA HF G10",
+         "VIXIA HF M30","VIXIA HF M300","VIXIA HF M31","VIXIA HF M40",
+         "VIXIA HF M400","VIXIA HF M41","VIXIA HF M50","VIXIA HF M500","VIXIA HF M52",
+         "VIXIA HF R10","VIXIA HF R100","VIXIA HF R11","VIXIA HF R20","VIXIA HF R200",
+         "VIXIA HF R21","VIXIA HF R30","VIXIA HF R300","VIXIA HF R32","VIXIA HF S20",
+         "VIXIA HF S200","VIXIA HF S21","VIXIA HF S30","VIXIA HV40","WFT-E7A",
+         "XF100","XF105","XF300","XF305","XH A1S","XH G1S","XL H1",
+         "XL H1A","XL H1S","XL2"*/
 
 
-<!-- Bootstrap version starts here -->
+        // Constructing the suggestion engine
+        var bloodhoundDS = new Bloodhound({
+            datumTokenizer: Bloodhound.tokenizers.obj.whitespace(['id','name']),
+            queryTokenizer: Bloodhound.tokenizers.whitespace,
+            local: productData
+        });
+        bloodhoundDS.initialize();
+        // Initializing the typeahead
+        $('#scrollable-dropdown-menu .typeahead').typeahead({
+                hint: true,
+                highlight: true, /* Enable substring highlighting */
+                minLength: 1 /* Specify minimum characters required for showing result */
+            },
+            {
+                name: 'searchproduct',
+                source: bloodhoundDS.ttAdapter(),
+                displayKey: 'name',
+                valueKey:"id",
+                limit: 20
+            });
+
+        $('.typeahead').bind('typeahead:select', function(ev, suggestion) {
+            //console.log('Selection: ' + suggestion);
+            for(var prop in suggestion){
+                console.log(prop + ': ' + suggestion[prop]);
+            }
+            $('#mySuppsId').val(suggestion['id']);
+        });
+        //end of typeahead init
+
+    });
+</script>
+
+<style type="text/css">
+
+    .twitter-typeahead {
+        width: 100%;
+        position: relative;
+    }
+
+
+    .typeahead, .tt-query, .tt-hint {
+        border: 2px solid #CCCCCC;
+        /* border-radius: 8px; */
+        font-size: 12px; /* Set input font size */
+        height: 30px;
+        line-height: 30px;
+        outline: medium none;
+        padding: 8px 12px;
+        width: 100%;
+    }
+    .typeahead {
+        background-color: #FFFFFF;
+    }
+    .typeahead:focus {
+        border: 2px solid #0097CF;
+    }
+    .tt-query {
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+    }
+    .tt-hint {
+        color: #999999;
+    }
+    .tt-menu {
+        background-color: #FFFFFF;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        border-radius: 8px;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        margin-top: 2px;
+        padding: 8px 0;
+        width: 422px;
+    }
+    .tt-suggestion {
+        font-size: 12px;  /* Set suggestion dropdown font size */
+        padding: 3px 20px;
+    }
+    .tt-suggestion:hover {
+        cursor: pointer;
+        background-color: #0097CF;
+        color: #FFFFFF;
+    }
+    .tt-suggestion p {
+        margin: 0;
+    }
+    #scrollable-dropdown-menu .tt-menu {
+        max-height: 150px;
+        overflow-y: auto;
+    }
+</style>
+
+
 <div class="panel-group">
     <div class="panel panel-default">
 
-        <div class="panel-heading panelGroupHeadBkg"><s:text name="lable.PageStep2.Title"/>
+        <div class="panel-heading panelGroupHeadBkg">Step1. Request Estimate
             <div class="numberedSteps">
-                <span class="wizard_stepOff">1</span>
-                <span class="wizard_stepOn">2</span>
+                <span class="wizard_stepOn">1</span>
+                <span class="wizard_stepOff">2</span>
                 <span class="wizard_stepOff">3</span>
                 <span class="wizard_stepOff">4</span>
             </div>
@@ -17,338 +166,208 @@
 
         <div class="panel-body">
 
-            <p>
-                <div class="well well-sm" style="color: #4d4d4d;"> <!--font-weight:bold;-->
-                    <%-- <s:text name="label.step2.top.title" /> --%>
-            <p/><s:text name="label.step2.top.msg.1" />
-            <p/><s:text name="label.step2.top.msg.2" />
-        </div>
-        </p>
+            <form class="form-horizontal" data-toggle="validator" id="repairFormStep1" method="post" action="indexStep1.html"
+                  onsubmit="document.getElementById('repairFormStep1').submit();">
+                <fieldset>
 
-        <%-- <span class="midblack" id="ErrorSummary" style="padding:52px;"></span> --%>
-
-        <form class="form-horizontal" data-toggle="validator"
-              id="track_existing_repair"
-              method="post"
-              action="/euo/repairOnlineStep2On">
-
-            <input type="HIDDEN" id="LANGUAGE" name="LANGUAGE" value="<%= lang%>">
-
-            <fieldset>
-                <!--
-                         <td class="leftCol"><label id="lbl_firstName"><s:text name="lable.PageStep2.firstName"/></label><span class="midred">*</span></td>
-                          <td class="rightCol">
-                                <input 	type="text" maxlength="40" style="width: 250px;"
-                                            class="form_input" autocomplete="off"
-                                            name="repairRecord.OURSPTO1" id="firstName_text"
-                                            value = "${repairRecord.OURSPTO1}" >
-                    -->
-
-
-                <div class="form-group required">
-                    <label class="control-label col-sm-4" for="firstName_text"><s:text name="lable.PageStep2.firstName"/>:</label>
-                    <div class="col-sm-8">
-                        <input type="text" class="form-control"
-                               name="repairRecord.OURSPTO1" id="firstName_text"
-                               required
-                               value = "${repairRecord.OURSPTO1}">
-
-                    </div>
-                </div>
-
-                <%-- <td class="leftCol"><label id="lbl_lastName"><s:text name="lable.PageStep2.lastName"/></label><span class="midred">*</span></td>
-                <td class="rightCol">
-                    <input 	type="text" maxlength="35" autocomplete="off"
-                              style="width: 250px;"  class="form_input"
-                              name="repairRecord.OURSPTO2" id="lastName_text"
-                              value = "${repairRecord.OURSPTO2}" >
-                </td>
-                --%>
-
-                <div class="form-group required">
-                    <label class="control-label col-sm-4" for="lastName_text"><s:text name="lable.PageStep2.lastName"/>:</label>
-                    <div class="col-sm-8">
-                        <input type="text" class="form-control"
-                               name="repairRecord.OURSPTO2" id="lastName_text"
-                               required
-                               value = "${repairRecord.OURSPTO2}">
-                    </div>
-                </div>
-
-                <%-- <tr>
-                <td class="leftCol"><label id="lbl_postCode"><s:text name="lable.PageStep2.postCode"/></label><span class="midred">*</span></td>
-                <td class="rightCol">
-
-                    <table>
-                        <tbody>
-                        <tr>
-                            <td align="right">
-                                <input 	type="text" style="width: 52px;" maxlength="6"  class="form_input"
-                                          name="repairRecord.OURSPPC" id="postCode" autocomplete="off"
-                                          value ="${repairRecord.OURSPPC}">
-                            </td>
-                            <td align="right">&nbsp;&nbsp;&nbsp;
-                                <button type="button"
-                                        onclick="JavaScript: postalCodeToObtainAddress('shipping', document.getElementById('LANGUAGE').value); return false;"><s:text name="lable.PageStep2.btnGet"/>
-                                </button>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-
-
-                </td>
-            </tr>
-                <tr>
-                    --%>
 
                     <div class="form-group required">
-                        <label class="control-label col-sm-4" for="postCode"><s:text name="lable.PageStep2.postCode"/>:</label>
+                        <label class="control-label required col-sm-4" for="ProductTypeahead">Choose Product Family:</label>
+                        <div id="scrollable-dropdown-menu" class="col-sm-8">
+                            <input type="text" name="productid" id="ProductTypeahead" class="form-control typeahead" autocomplete="off" spellcheck="false" placeholder="Type your Product"
+                                   data-error="Product required" required>
+                            <div class="help-block with-errors"></div>
+                              <!-- tt-query -->
+                        </div>
+                    </div>
+                    <input type="hidden" name="mySuppsId" id="mySuppsId">
+
+                    <div class="form-group required">
+                        <label class="control-label required col-sm-4" for="productFamily">Choose Product Family:</label>
+                        <div class="col-sm-8">
+                            <select class="form-control" id="productFamily" placeholder="Enter product family">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group required">
+                        <label class="control-label col-sm-4" for="productSeries">Choose Product Series:</label>
+                        <div class="col-sm-8">
+                            <select class="form-control" id="productSeries" placeholder="Enter product series">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group required">
+                        <label class="control-label col-sm-4" for="chooseModel">Choose Model:</label>
+                        <div class="col-sm-8">
+                            <select class="form-control" id="chooseModel" placeholder="Enter model">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-sm-4" for="serialNumber">Serial Number:</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control"
+                                   id="serialNumber"
+                                   pattern="^[_A-z0-9]{1,}$" maxlength="15"
+                                   minlength="7" required
+                                   placeholder="Enter Serial Number"
+                                   data-error="Serial number must be 7 to 15 alphaNumeric characters">
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-group required">
+                        <label class="control-label col-sm-4" for="postCode">Postal code:</label>
                         <div class="col-sm-4">
                             <input type="text" class="form-control"
                                    name="repairRecord.OURSPPC" id="postCode" autocomplete="off"
-                                   value ="${repairRecord.OURSPPC}"
+                                   pattern="[A-Za-z][0-9][A-Za-z]\s{0,1}[0-9][A-Za-z][0-9]"
+                                   required data-error="postal code format A9A 9A9"
+                                   value ="A0A 0A0"
                                    required>
+                            <div class="help-block with-errors"></div>
                         </div>
                         <div class="col-sm-4">
                             <button type="button" class="btn btn-default"
-                                    onclick="JavaScript: postalCodeToObtainAddress('shipping', document.getElementById('LANGUAGE').value); return false;"><s:text name="lable.PageStep2.btnGet"/>
+                                    onclick="JavaScript: if(postalValid()){postalCodeToObtainAddress('shipping', 'en');} return false;">
+                                Get City
                             </button>
                         </div>
                     </div>
 
-                    <%--
-                    <td class="leftCol"><label id="lbl_address"><s:text name="lable.PageStep2.address"/></label><span class="midred">*</span></td>
-                    <td class="rightCol">
-                        <input 	type="text" maxlength="30" style="width: 250px;"  class="form_input"
-                                  name="repairRecord.OURSPST1" id="address_text" autocomplete="off"
-                                  value = "${repairRecord.OURSPST1}" >
-                    </td>
-                </tr>
-                --%>
-
-                <div class="form-group required">
-                    <label class="control-label col-sm-4" for="address_text"><s:text name="lable.PageStep2.address"/>:</label>
-                    <div class="col-sm-8">
-                        <input type="text" class="form-control"
-                               name="repairRecord.OURSPST1" id="address_text" autocomplete="off"
-                               value = "${repairRecord.OURSPST1}">
+                    <div class="form-group required">
+                        <label class="control-label col-sm-4" for="city_text">City:</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control"
+                                   name="repairRecord.OURSPCT" id="city_text"
+                                   value = "">
+                        </div>
                     </div>
-                </div>
 
-                <%--
-                <tr>
-                    <td class="leftCol"><label id="lbl_address2"><s:text name="lable.PageStep2.address"/> 2</label></td>
-                    <td class="rightCol">
-                        <input 	type="text" maxlength="30" style="width: 250px;"
-                                  class="form_input"  autocomplete="off"
-                                  name="repairRecord.OURSPST2" id="address2_text"
-                                  value = "${repairRecord.OURSPST2}">
-                    </td>
-                </tr>
-                --%>
-
-                <div class="form-group required">
-                    <label class="control-label col-sm-4" for="address2_text"><s:text name="lable.PageStep2.address"/> 2:</label>
-                    <div class="col-sm-8">
-                        <input type="text" class="form-control"
-                               name="repairRecord.OURSPST2" id="address2_text"
-                               value = "${repairRecord.OURSPST2}">
+                    <div class="form-group required">
+                        <label class="control-label col-sm-4" for="province_text">Province:</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control"
+                                   name="provinceShipping" id="province_text"
+                                   value ="">
+                        </div>
                     </div>
-                </div>
 
+                    <div class="form-group">
+                        <label class="control-label col-sm-4" for="purchaseDate">Native Purchase Date:</label>
+                        <div class="input-group col-sm-8" id="purchaseDate">
+                            <div class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </div>
+                            <!--<input type="text" class="date-picker form-control" data-date-start-view="decade" data-date-format="mm/dd/yy" data-date="02/01/99" value="02/01/99" name="birthday" placeholder="MM/DD/YY" />-->
+                            <input type="text" class="date-picker form-control" data-date-format="yy-mm-dd" name="purchaseDate" placeholder="yyyy-mm-dd" />
 
-                <%--
-                <tr>
-                    <td class="leftCol"><label id="lbl_city"><s:text name="lable.PageStep2.city"/></label><span class="midred">*</span></td>
-                    <td class="rightCol">
-                        <input 	type="text"  autocomplete="off"
-                                  maxlength="30" style="width: 250px;"  class="form_input"
-                                  name="repairRecord.OURSPCT" id="city_text"
-                                  value = "${repairRecord.OURSPCT}" >
-                    </td>
-                </tr>
-                --%>
-
-                <div class="form-group required">
-                    <label class="control-label col-sm-4" for="city_text"><s:text name="lable.PageStep2.city"/>:</label>
-                    <div class="col-sm-8">
-                        <input type="text" class="form-control"
-                               name="repairRecord.OURSPCT" id="city_text"
-                               value = "${repairRecord.OURSPCT}">
+                        </div>
                     </div>
-                </div>
 
-
-                <%--
-                <tr>
-                    <td class="leftCol"><label id="lbl_province"><s:text name="lable.PageStep2.province"/></label></td>
-                    <td class="rightCol" id="state_container" style="z-index: 1000;" >
-                        <input 	type="text"	readonly="readonly" autocomplete="off"
-                                  maxlength="40" style="width: 250px; background-color: #DDDDDD;"  class="form_input"
-                                  name="provinceShipping" id="province_text"
-                                  value ="${provinceShipping}" >
-                    </td>
-                </tr>
-                --%>
-                <div class="form-group required">
-                    <label class="control-label col-sm-4" for="province_text"><s:text name="lable.PageStep2.province"/>:</label>
-                    <div class="col-sm-8">
-                        <input type="text" class="form-control"
-                               name="provinceShipping" id="province_text"
-                               value ="${provinceShipping}">
+                    <div class="form-group">
+                        <label class="control-label col-sm-4" for="purchaseDate2">Bootstrap Purchase Date:</label>
+                        <!-- define '.input-group#purchaseDate2' in resources/css/global_new.css -->
+                        <div class="input-group date col-sm-8" id="purchaseDate2">
+                            <input type="text" class="form-control" data-date-format="yyyy-mm-dd" placeholder="yyyy-mm-dd">
+                            <div class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </div>
+                        </div>
                     </div>
-                </div>
 
-                <%--
-                <tr>
-                    <td class="leftCol"><label id="lbl_phone"><s:text name="lable.PageStep2.phone"/></label><span class="midred">*</span></td>
-                    <td class="rightCol">
-                        <table>
-                            <tbody>
-                            <tr>
-                                <td align="right">
-                                    <input 	type="text" style="width: 25px;"maxlength="3" class="form_input"
-                                              name="phoneAreaCode" id="phone1_text" autocomplete="off"
-                                              value ="${phoneAreaCode}">
-                                </td>
-                                <td align="right">
-                                    <input 	type="text" style="width: 25px;"maxlength="3" class="form_input"
-                                              name="phonePrefix" id="phone2_text" autocomplete="off"
-                                              value ="${phonePrefix}">
-                                </td>
-                                <td align="right">
-                                    <input 	type="text" style="width: 30px;"maxlength="4" class="form_input"
-                                              name="phoneLastFour" id="phone3_text" autocomplete="off"
-                                              value ="${phoneLastFour}">
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </td>
-                </tr>
-                --%>
-
-                <div class="form-group required">
-                    <label class="control-label col-sm-4" for="phone1_text"><s:text name="lable.PageStep2.phone"/>:</label>
-                    <div class="col-sm-2">
-                        <input type="text" class="form-control"
-                               name="phoneAreaCode" id="phone1_text" autocomplete="off"
-                               value ="${phoneAreaCode}">
+                    <div class="form-group">
+                        <label class="control-label col-sm-4" for="purchaseDate3">Original Purchase Date:</label>
+                        <!-- define '.input-group#purchaseDate2' in resources/css/global_new.css -->
+                        <div class="input-group col-sm-8" id="purchaseDate3">
+                            <input type="text" class="form-control" data-date-format="mm/dd/yy" placeholder="MM/DD/YY" id='orderStartDate' value = "orderStartDate" name="orderStartDate">
+                            <div class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar" onClick="displayDatePicker('orderStartDate', this, 'ymd', '-'); return false;"></span>
+                                <!--<button type="button" class="button_example" onClick="displayDatePicker('orderStartDate', this, 'ymd', '-'); return false;">&nbsp;&#xe805;&nbsp;</button>-->
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-sm-2">
-                        <input type="text" class="form-control"
-                               name="phonePrefix" id="phone2_text" autocomplete="off"
-                               value ="${phonePrefix}">
+
+
+
+                    <!--<div class="form-group">
+                        <label class="control-label col-sm-4" for="purchaseDate2">Purchase Date:</label>
+                        <div class="form-group col-sm-8" id="purchaseDate2">
+                            <div class="input-group date">
+                                <input type="text" class="form-control">
+                                <div class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>-->
+
+                    <!--                    <div class="form-group">
+                                            <div class="input-group date">
+                                                <input type="text" class="form-control">
+                                                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                            </div>
+                                        </div>-->
+
+
+
+
+                    <div class="well well-sm" style="font-weight:bold; color: #4d4d4d;">Please note: If you do not find your model in the menus above, we recommend you call our
+                        Customer Support Center at 1-800-OK- CANON (1-800-652-2666) for further information.</div>
+
+
+
+                    <div class="form-group">
+                        <div class="col-sm-offset-4 col-sm-8">
+                            <!--<button type="submit" class="btn btn-default">Submit</button>-->
+                            <button type="button" class="button_example" onClick="window.location.href='/euo/repairOnlineStep1';return false">TRACK EXISTING REPAIR&nbsp;&nbsp;&#xe800;</button>
+                            <button type="button" class="button_example" onClick="window.location.href='/euo/repairOnlineStep1';return false">&nbsp;HOME&nbsp;</button>
+                            <!--<button type="button" class="button_example" onClick="window.location.href='/euo/repairOnlineStep1';return false">NEXT STEP&nbsp;&nbsp;&#xe800;</button>-->
+                            <button type="submit" class="button_example">NEXT STEP&nbsp;&nbsp;&#xe800;</button>
+                        </div>
                     </div>
-                    <div class="col-sm-4">
-                        <input type="text" class="form-control"
-                               name="phoneLastFour" id="phone3_text" autocomplete="off"
-                               value ="${phoneLastFour}">
-                    </div>
-                </div>
 
-                <%--
-                <tr>
-                    <td class="leftCol"><label id="lbl_emailAddress"><s:text name="lable.PageStep2.emailAddress"/></label><span class="midred">*</span></td>
-                    <td class="rightCol">
-                        <input 	type="text" maxlength="40" style="width: 250px;"  class="form_input"
-                                  name="repairRecord.OUREMAIL" id="email_text" autocomplete="off"
-                                  value = "${repairRecord.OUREMAIL}" >
-                    </td>
-                </tr>
-                --%>
-                <div class="form-group required">
-                    <label class="control-label col-sm-4" for="email_text"><s:text name="lable.PageStep2.emailAddress"/>:</label>
-                    <div class="col-sm-8">
-                        <input type="email" class="form-control"
-                               name="repairRecord.OUREMAIL" id="email_text" autocomplete="off"
-                               value = "${repairRecord.OUREMAIL}"
-                               data-error="That email address is invalid. A vaild email address is needed to update repair status.">
-                        <div class="help-block with-errors"></div>
-                    </div>
-                </div>
+                </fieldset>
+            </form>
 
-                <div class="form-group required">
-                    <label class="control-label col-sm-4" for="emailConfirm_text"><s:text name="lable.PageStep2.confirmEmail"/>:</label>
-                    <div class="col-sm-8">
-                        <input type="text" class="form-control"
-                               name="emailConfirm" id="emailConfirm_text" autocomplete="off"
-                               data-match="#email_text" data-match-error="Whoops, confirm email don't match"
-                               value = "${emailConfirm}">
-                        <div class="help-block with-errors"></div>
-                    </div>
-                </div>
+        </div> <!--closing div class="panel-body" -->
+    </div> <!--div class="panel panel-default"-->
 
-                <%--
-                <tr class="bothBorders">
-                    <td class="leftCol" colspan="2">
-                        <label id="lbl_model">
-                            <s:text name="lable.PageStep2.statusText"/>
-                        </label></td>
-                </tr>
-                --%>
+</div> <!--div class="panel-group"-->
 
-                <%-- <div class="form-group">
-                <label class="control-label col-sm-12" ><s:text name="lable.PageStep2.statusText"/></label>
-            </div> --%>
+<script>
 
-                <div class="well well-sm" style="color: #4d4d4d; font-weight:bold;"> <!--font-weight:bold;-->
-                    <s:text name="lable.PageStep2.statusText"/>
-                </div>
+    window.onload = function()
+    {
 
-                <%--
-                <tr class="bothBorders">
-                    <td class="leftCol"><label id="lbl_model">
-                        <s:text name="lable.PageStep2.comments"/>
-                    </label></td>
-                    <td class="rightFormInput text_area_input">
-                        <s:textarea	key="txtArea"  rows="5" cols="46" maxlength="256"
-                                       onKeyDown="limitText(this,256);" onKeyUp="limitText(this,256);"
-                                       name="repairRecord.OURCLCOM"/>
-                    </td>
-                </tr>
-                --%>
-                <div class="form-group required">
-                    <label class="control-label col-sm-4" for="commentArea"><s:text name="lable.PageStep2.comments"/>:</label>
-                    <div class="col-sm-8">
-                            <textarea class="form-control" rows="5" cols="46" maxlength="256"
-                                      id="commentArea"
-                                      onKeyDown="limitText(this,256);" onKeyUp="limitText(this,256);"
-                                      name="repairRecord.OURCLCOM"></textarea>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-sm-offset-4 col-sm-8">
-                        <button type="button" class="button_example"
-                                onClick="window.location.href='/euo/repairOnlineStep1OnBs?backflag=true';return false">
-                            &#xe801;&nbsp;&nbsp;<s:text name='label.back'/>&nbsp;
-                        </button>
-
-                        <button type="submit" class="button_example"
-                                onclick = "submitForm();">
-                            &nbsp;<s:text name='title.next.step' />&nbsp;&nbsp;&nbsp;&#xe800;
-                        </button>
-
-                        <button type="submit" class="button_example"
-                                onclick="JavaScript:confirm_entry('<s:text name='alert.cancel'/>'); return false;">
-                            &nbsp;<s:text name='label.cancel'/>&nbsp;
-                        </button>
-                    </div>
-                </div>
-
-
-
-            </fieldset>
-        </form>
-
-    </div> <!--closing div class="panel-body" -->
-</div> <!-- closing div class="panel panel-default"-->
-</div> <!-- closing div class="panel-group"-->
-<!-- Bootstrap version ends here -->
+    }
 
 
 
 
 
+    function postalValid(){
+        var pCode = document.getElementById('postCode').value;
+        var pCodeValid = document.getElementById('postCode').checkValidity();
+        alert('pCodeValid = '+pCodeValid);
+        return pCodeValid;
+    }
+
+</script>
