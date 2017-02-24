@@ -6,7 +6,14 @@
         var productData = [
             {"id":1,"name":"EF 100-400mm f/4.5-5.6L IS USM"},
             {"id":2,"name":"EF 200-500mm f/4.5-5.6L IS USM"},
-            {"id":3,"name":"EF 300-500mm f/4.5-5.6L IS USM"}
+            {"id":3,"name":"EF 300-500mm f/4.5-5.6L IS USM"},
+            {"id":4,"name":"EF 150-1500mm f/4.5-5.6L IS USM"},
+            {"id":5,"name":"EF 230-500mm f/4.5-5.6L IS USM"},
+            {"id":6,"name":"EF 220-500mm f/4.5-5.6L IS USM"},
+            {"id":7,"name":"EF 350-500mm f/4.5-5.6L IS USM"},
+            {"id":8,"name":"EF 430-500mm f/4.5-5.6L IS USM"},
+            {"id":9,"name":"EF 670-500mm f/4.5-5.6L IS USM"},
+            {"id":10,"name":"EF 600-500mm f/4.5-5.6L IS USM"}
             ];
 
         /*"Compact Digital Camera","EOS SLR Camera Systems","Camcorders","EOS Digital SLR Camera",
@@ -56,11 +63,11 @@
 
         // Constructing the suggestion engine
         var bloodhoundDS = new Bloodhound({
-            datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+            datumTokenizer: Bloodhound.tokenizers.obj.whitespace(['id','name']),
             queryTokenizer: Bloodhound.tokenizers.whitespace,
             local: productData
         });
-
+        bloodhoundDS.initialize();
         // Initializing the typeahead
         $('#scrollable-dropdown-menu .typeahead').typeahead({
                 hint: true,
@@ -68,11 +75,20 @@
                 minLength: 1 /* Specify minimum characters required for showing result */
             },
             {
-                name: 'cars',
+                name: 'searchproduct',
                 source: bloodhoundDS.ttAdapter(),
                 displayKey: 'name',
+                valueKey:"id",
                 limit: 20
             });
+
+        $('.typeahead').bind('typeahead:select', function(ev, suggestion) {
+            //console.log('Selection: ' + suggestion);
+            for(var prop in suggestion){
+                console.log(prop + ': ' + suggestion[prop]);
+            }
+            $('#mySuppsId').val(suggestion['id']);
+        });
         //end of typeahead init
 
     });
@@ -113,7 +129,7 @@
         border: 1px solid rgba(0, 0, 0, 0.2);
         border-radius: 8px;
         box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-        margin-top: 12px;
+        margin-top: 2px;
         padding: 8px 0;
         width: 422px;
     }
@@ -129,7 +145,7 @@
     .tt-suggestion p {
         margin: 0;
     }
-    #scrollable-dropdown-menu .tt-dropdown-menu {
+    #scrollable-dropdown-menu .tt-menu {
         max-height: 150px;
         overflow-y: auto;
     }
@@ -150,21 +166,21 @@
 
         <div class="panel-body">
 
-            <form class="form-horizontal" data-toggle="validator" id="repairFormStep1"
-                  onsubmit="alert('submitted');">
+            <form class="form-horizontal" data-toggle="validator" id="repairFormStep1" method="post" action="indexStep1.html"
+                  onsubmit="document.getElementById('repairFormStep1').submit();">
                 <fieldset>
 
 
                     <div class="form-group required">
                         <label class="control-label required col-sm-4" for="ProductTypeahead">Choose Product Family:</label>
                         <div id="scrollable-dropdown-menu" class="col-sm-8">
-                            <input type="text" id="ProductTypeahead" class="form-control typeahead" autocomplete="off" spellcheck="false" placeholder="Type your Product"
+                            <input type="text" name="productid" id="ProductTypeahead" class="form-control typeahead" autocomplete="off" spellcheck="false" placeholder="Type your Product"
                                    data-error="Product required" required>
                             <div class="help-block with-errors"></div>
                               <!-- tt-query -->
                         </div>
                     </div>
-
+                    <input type="hidden" name="mySuppsId" id="mySuppsId">
 
                     <div class="form-group required">
                         <label class="control-label required col-sm-4" for="productFamily">Choose Product Family:</label>
