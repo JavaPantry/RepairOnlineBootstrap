@@ -225,17 +225,17 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
+                    <!--<div class="form-group">
                         <label class="control-label col-sm-4" for="purchaseDate">Native Purchase Date:</label>
                         <div class="input-group col-sm-8" id="purchaseDate">
                             <div class="input-group-addon">
                                 <span class="glyphicon glyphicon-calendar"></span>
                             </div>
-                            <!--<input type="text" class="date-picker form-control" data-date-start-view="decade" data-date-format="mm/dd/yy" data-date="02/01/99" value="02/01/99" name="birthday" placeholder="MM/DD/YY" />-->
+                            &lt;!&ndash;<input type="text" class="date-picker form-control" data-date-start-view="decade" data-date-format="mm/dd/yy" data-date="02/01/99" value="02/01/99" name="birthday" placeholder="MM/DD/YY" />&ndash;&gt;
                             <input type="text" class="date-picker form-control" data-date-format="yy-mm-dd" name="purchaseDate" placeholder="yyyy-mm-dd" />
 
                         </div>
-                    </div>
+                    </div>-->
 
                     <div class="form-group">
                         <label class="control-label col-sm-4" for="purchaseDate2">Bootstrap Purchase Date:</label>
@@ -248,17 +248,17 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
+                    <!--<div class="form-group">
                         <label class="control-label col-sm-4" for="purchaseDate3">Original Purchase Date:</label>
-                        <!-- define '.input-group#purchaseDate2' in resources/css/global_new.css -->
+                        &lt;!&ndash; define '.input-group#purchaseDate2' in resources/css/global_new.css &ndash;&gt;
                         <div class="input-group col-sm-8" id="purchaseDate3">
                             <input type="text" class="form-control" data-date-format="mm/dd/yy" placeholder="MM/DD/YY" id='orderStartDate' value = "orderStartDate" name="orderStartDate">
                             <div class="input-group-addon">
                                 <span class="glyphicon glyphicon-calendar" onClick="displayDatePicker('orderStartDate', this, 'ymd', '-'); return false;"></span>
-                                <!--<button type="button" class="button_example" onClick="displayDatePicker('orderStartDate', this, 'ymd', '-'); return false;">&nbsp;&#xe805;&nbsp;</button>-->
+                                &lt;!&ndash;<button type="button" class="button_example" onClick="displayDatePicker('orderStartDate', this, 'ymd', '-'); return false;">&nbsp;&#xe805;&nbsp;</button>&ndash;&gt;
                             </div>
                         </div>
-                    </div>
+                    </div>-->
 
 
 
@@ -308,6 +308,13 @@
 </div> <!--div class="panel-group"-->
 
 <script>
+
+    /* bootstrap date picker require toggle*/
+    $('.input-group.date').datepicker({
+        todayBtn: true,
+        clearBtn: true,
+        toggleActive: true
+    });
 
     window.onload = function()
     {
