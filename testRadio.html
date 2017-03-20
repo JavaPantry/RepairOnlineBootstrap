@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Repair Online</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+
+    <script src="node_modules/jquery/dist/jquery.js"></script>
+
+    <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="node_modules/bootstrap-validator/dist/validator.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="resources/css/global_new.css">
+    <link rel="stylesheet" type="text/css" href="resources/css/bootstrap_canon.css">
+
+
+
+    <script type="text/javascript" src="resources/js/calendar.js"></script>
+    <link rel="stylesheet" type="text/css" href="resources/js/calendar.css"/>
+
+    <!--<link rel="stylesheet" type="text/css"  href="b ower_components/bootstrap-datepicker/css/datepicker3.css">-->
+    <link rel="stylesheet" type="text/css" href="node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker3.css">
+    <!--<script src="b ower_components/modernizr/modernizr.js"></script>-->
+
+
+
+</head>
+<body>
+
+<!-- doesn't work <link rel="import" href="./headerTmpl.html"/>-->
+
+<!--<div id="headerTmplHolder">-->
+
+<div class="container">
+    <div class="page-header">
+        <table class="header_bkg">
+            <tr>
+                <td>
+                    <span class="left_header_block"></span>
+                </td>
+                <td>
+                    <h3>Online Repair Tracking & Approval System</h3>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <!--<div id="bodyTmplHolder"></div>-->
+
+    <script  type="text/javascript" src="resources\js\typeahead.bundle.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            //typeahead init
+            // Defining the local dataset
+            var productData = [
+                {"id":1,"name":"EF 100-400mm f/4.5-5.6L IS USM"},
+                {"id":2,"name":"EF 200-500mm f/4.5-5.6L IS USM"},
+                {"id":3,"name":"EF 300-500mm f/4.5-5.6L IS USM"},
+                {"id":4,"name":"EF 150-1500mm f/4.5-5.6L IS USM"},
+                {"id":5,"name":"EF 230-500mm f/4.5-5.6L IS USM"},
+                {"id":6,"name":"EF 220-500mm f/4.5-5.6L IS USM"},
+                {"id":7,"name":"EF 350-500mm f/4.5-5.6L IS USM"},
+                {"id":8,"name":"EF 430-500mm f/4.5-5.6L IS USM"},
+                {"id":9,"name":"EF 670-500mm f/4.5-5.6L IS USM"},
+                {"id":10,"name":"EF 600-500mm f/4.5-5.6L IS USM"}
+            ];
+
+            // Constructing the suggestion engine
+            var bloodhoundDS = new Bloodhound({
+                datumTokenizer: Bloodhound.tokenizers.obj.whitespace(['id','name']),
+                queryTokenizer: Bloodhound.tokenizers.whitespace,
+                local: productData
+            });
+            bloodhoundDS.initialize();
+            // Initializing the typeahead
+            $('#scrollable-dropdown-menu .typeahead').typeahead({
+                    hint: true,
+                    highlight: true, /* Enable substring highlighting */
+                    minLength: 1 /* Specify minimum characters required for showing result */
+                },
+                {
+                    name: 'searchproduct',
+                    source: bloodhoundDS.ttAdapter(),
+                    displayKey: 'name',
+                    valueKey:"id",
+                    limit: 20
+                });
+
+            $('.typeahead').bind('typeahead:select', function(ev, suggestion) {
+                //console.log('Selection: ' + suggestion);
+                for(var prop in suggestion){
+                    console.log(prop + ': ' + suggestion[prop]);
+                }
+                $('#mySuppsId').val(suggestion['id']);
+            });
+            //end of typeahead init
+
+        });
+    </script>
+
+    <style type="text/css">
+
+        .twitter-typeahead {
+            width: 100%;
+            position: relative;
+        }
+
+
+        .typeahead, .tt-query, .tt-hint {
+            border: 2px solid #CCCCCC;
+            /* border-radius: 8px; */
+            font-size: 12px; /* Set input font size */
+            height: 30px;
+            line-height: 30px;
+            outline: medium none;
+            padding: 8px 12px;
+            width: 100%;
+        }
+        .typeahead {
+            background-color: #FFFFFF;
+        }
+        .typeahead:focus {
+            border: 2px solid #0097CF;
+        }
+        .tt-query {
+            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+        }
+        .tt-hint {
+            color: #999999;
+        }
+        .tt-menu {
+            background-color: #FFFFFF;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+            margin-top: 2px;
+            padding: 8px 0;
+            width: 422px;
+        }
+        .tt-suggestion {
+            font-size: 12px;  /* Set suggestion dropdown font size */
+            padding: 3px 20px;
+        }
+        .tt-suggestion:hover {
+            cursor: pointer;
+            background-color: #0097CF;
+            color: #FFFFFF;
+        }
+        .tt-suggestion p {
+            margin: 0;
+        }
+        #scrollable-dropdown-menu .tt-menu {
+            max-height: 150px;
+            overflow-y: auto;
+        }
+    </style>
+
+    <script type="text/javascript">
+
+        $(function(){
+            $('#lunchStart').prop('disabled', true);
+            $('#lunchEnd').prop('disabled', true);
+            //$("#bodyTmplHolder").load("./step1.html");
+        });
+
+        function handleLunchStatusChange(){
+            //console.log("handleLunchStatusChange called");
+            var form = document.getElementById('repairFormStep1');
+            var item = form.elements['lunchStatus'];//var item3 = document.getElementById('lunchRadio');
+            var itemValue = item.value;
+            //console.log("handleLunchStatusChange lunchStatus = "+itemValue);
+
+            if ( itemValue === 'N' ){
+                $('#lunchStart').prop('disabled', false);
+                $('#lunchEnd').prop('disabled', false);
+
+                $('#lunchStart').prop('required', true);
+                $('#lunchEnd').prop('required', true);
+
+                $('#lunchStart').validator('update');
+                $('#lunchEnd').validator('update');
+
+            }else {
+
+                $('#lunchStart').prop('value', null);
+                $('#lunchEnd').prop('value', null);
+
+                $('#lunchStart').removeAttr('required');
+                $('#lunchEnd').removeAttr('required');
+
+                $('#lunchStart').removeClass('has-error');
+                $('#lunchEnd').removeClass('has-error');
+
+                $('#lunchStart').closest('.form-group').removeClass('has-error')
+                $('#lunchEnd').closest('.form-group').removeClass('has-error')
+
+
+                $('#lunchStart').prop('disabled', true);
+                $('#lunchEnd').prop('disabled', true);
+
+                $('#lunchStart').validator('update');
+                $('#lunchEnd').validator('update');
+                $('#repairFormStep1').validator('update');
+
+                var validFlag = false;
+                if (form.checkValidity()){
+                    validFlag = true;
+                    var submitBtn = $("button:submit.btn-primary");
+                    //console.log("submitBtn = "+submitBtn);
+                    submitBtn = $("button:submit.btn");
+                    //console.log("submitBtn = "+submitBtn);
+                    $("button:submit.btn-primary").removeClass('disabled');
+                    $("button:submit.btn").removeClass('disabled');
+                }
+                //console.log("handleLunchStatusChange valid = "+validFlag);
+            }
+
+        }
+    </script>
+
+    <div class="panel-group">
+        <div class="panel panel-default">
+
+            <div class="panel-heading panelGroupHeadBkg">Step1. Request Estimate
+                <div class="numberedSteps">
+                    <span class="wizard_stepOn">1</span>
+                    <span class="wizard_stepOff">2</span>
+                    <span class="wizard_stepOff">3</span>
+                    <span class="wizard_stepOff">4</span>
+                </div>
+            </div>
+
+            <div class="panel-body">
+
+                <form class="form-horizontal" data-toggle="validator" role="form" id="repairFormStep1" method="post" action="indexStep1.html"
+                      onsubmit="document.getElementById('repairFormStep1').submit();">
+                    <fieldset>
+
+                        <div class="form-group">
+                            <label class="control-label required col-sm-4" for="ProductTypeahead">Lunch:</label>
+                            <div class="col-sm-8">
+                                <label class="radio-inline"><input type="radio" name="lunchStatus" value='Y' onchange="handleLunchStatusChange()" checked="checked">Open</label>
+                                <label class="radio-inline"><input type="radio" name="lunchStatus" value='N' onchange="handleLunchStatusChange()">Closed</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                                <label class="control-label col-sm-4" for="lunchStart">Lunch hour Start:</label>
+                                <div class="col-sm-2">
+                                    <input type="time" class="form-control"
+                                           name="lunchStart" id="lunchStart"
+                                           pattern="[0-9]{1,2}:[0-9]{2}"
+                                           placeholder ="24HH:MM">
+                                           <!--data-error="Lunch start required" >
+                                    <div class="help-block with-errors"></div>-->
+                                </div>
+                                <label class="control-label col-sm-2" for="lunchEnd">End:</label>
+                                <div class="col-sm-2">
+                                    <input type="time" class="form-control"
+                                           name="lunchEnd" id="lunchEnd"
+                                           pattern="[0-9]{1,2}:[0-9]{2}"
+                                           placeholder ="24HH:MM">
+                                           <!--data-error="Lunch start required" >
+                                    <div class="help-block with-errors"></div>-->
+                                </div>
+
+                        </div>
+                        <div class="form-group required">
+                            <label class="control-label required col-sm-4" for="ProductTypeahead">Choose Product Family:</label>
+                            <div id="scrollable-dropdown-menu" class="col-sm-8">
+                                <input type="text" name="productid" id="ProductTypeahead" class="form-control typeahead" autocomplete="off" spellcheck="false" placeholder="Type your Product"
+                                       data-error="Product required" required>
+                                <div class="help-block with-errors"></div>
+                                <!-- tt-query -->
+                            </div>
+                        </div>
+                        <input type="hidden" name="mySuppsId" id="mySuppsId">
+
+                        <div class="form-group required">
+                            <label class="control-label required col-sm-4" for="productFamily">Choose Product Family:</label>
+                            <div class="col-sm-8">
+                                <select class="form-control" id="productFamily" placeholder="Enter product family">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                </select>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group required">
+                            <label class="control-label col-sm-4" for="productSeries">Choose Product Series:</label>
+                            <div class="col-sm-8">
+                                <select class="form-control" id="productSeries" placeholder="Enter product series">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                </select>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group required">
+                            <label class="control-label col-sm-4" for="chooseModel">Choose Model:</label>
+                            <div class="col-sm-8">
+                                <select class="form-control" id="chooseModel" placeholder="Enter model">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-sm-4" for="serialNumber">Serial Number:</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control"
+                                       id="serialNumber"
+                                       pattern="^[_A-z0-9]{1,}$" maxlength="15"
+                                       minlength="7" required
+                                       placeholder="Enter Serial Number"
+                                       data-error="Serial number must be 7 to 15 alphaNumeric characters">
+                                <div class="help-block with-errors"></div>
+                            </div>
+                        </div>
+
+                        <div class="form-group required">
+                            <label class="control-label col-sm-4" for="postCode">Postal code:</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control"
+                                       name="repairRecord.OURSPPC" id="postCode" autocomplete="off"
+                                       pattern="[A-Za-z][0-9][A-Za-z]\s{0,1}[0-9][A-Za-z][0-9]"
+                                       required data-error="postal code format A9A 9A9"
+                                       value ="A0A 0A0"
+                                       required>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                            <div class="col-sm-4">
+                                <button type="button" class="btn btn-default"
+                                        onclick="JavaScript: if(postalValid()){postalCodeToObtainAddress('shipping', 'en');} return false;">
+                                    Get City
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="form-group required">
+                            <label class="control-label col-sm-4" for="city_text">City:</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control"
+                                       name="repairRecord.OURSPCT" id="city_text"
+                                       value = "">
+                            </div>
+                        </div>
+
+                        <div class="form-group required">
+                            <label class="control-label col-sm-4" for="province_text">Province:</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control"
+                                       name="provinceShipping" id="province_text"
+                                       value ="">
+                            </div>
+                        </div>
+
+                        <!--<div class="form-group">
+                            <label class="control-label col-sm-4" for="purchaseDate">Native Purchase Date:</label>
+                            <div class="input-group col-sm-8" id="purchaseDate">
+                                <div class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </div>
+                                &lt;!&ndash;<input type="text" class="date-picker form-control" data-date-start-view="decade" data-date-format="mm/dd/yy" data-date="02/01/99" value="02/01/99" name="birthday" placeholder="MM/DD/YY" />&ndash;&gt;
+                                <input type="text" class="date-picker form-control" data-date-format="yy-mm-dd" name="purchaseDate" placeholder="yyyy-mm-dd" />
+
+                            </div>
+                        </div>-->
+
+                        <div class="form-group">
+                            <label class="control-label col-sm-4" for="purchaseDate2">Bootstrap Purchase Date:</label>
+                            <!-- define '.input-group#purchaseDate2' in resources/css/global_new.css -->
+                            <div class="input-group date col-sm-8" id="purchaseDate2">
+                                <input type="text" class="form-control" data-date-format="yyyy-mm-dd" placeholder="yyyy-mm-dd">
+                                <div class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--<div class="form-group">
+                            <label class="control-label col-sm-4" for="purchaseDate3">Original Purchase Date:</label>
+                            &lt;!&ndash; define '.input-group#purchaseDate2' in resources/css/global_new.css &ndash;&gt;
+                            <div class="input-group col-sm-8" id="purchaseDate3">
+                                <input type="text" class="form-control" data-date-format="mm/dd/yy" placeholder="MM/DD/YY" id='orderStartDate' value = "orderStartDate" name="orderStartDate">
+                                <div class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar" onClick="displayDatePicker('orderStartDate', this, 'ymd', '-'); return false;"></span>
+                                    &lt;!&ndash;<button type="button" class="button_example" onClick="displayDatePicker('orderStartDate', this, 'ymd', '-'); return false;">&nbsp;&#xe805;&nbsp;</button>&ndash;&gt;
+                                </div>
+                            </div>
+                        </div>-->
+
+
+
+                        <!--<div class="form-group">
+                            <label class="control-label col-sm-4" for="purchaseDate2">Purchase Date:</label>
+                            <div class="form-group col-sm-8" id="purchaseDate2">
+                                <div class="input-group date">
+                                    <input type="text" class="form-control">
+                                    <div class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>-->
+
+                        <!--                    <div class="form-group">
+                                                <div class="input-group date">
+                                                    <input type="text" class="form-control">
+                                                    <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                                </div>
+                                            </div>-->
+
+
+
+
+                        <div class="well well-sm" style="font-weight:bold; color: #4d4d4d;">Please note: If you do not find your model in the menus above, we recommend you call our
+                            Customer Support Center at 1-800-OK- CANON (1-800-652-2666) for further information.</div>
+
+
+
+                        <div class="form-group">
+                            <div class="col-sm-offset-4 col-sm-8">
+                                <!--<button type="submit" class="btn btn-default">Submit</button>-->
+                                <button type="button" class="button_example" onClick="window.location.href='/euo/repairOnlineStep1';return false">TRACK EXISTING REPAIR&nbsp;&nbsp;&#xe800;</button>
+                                <button type="button" class="button_example" onClick="window.location.href='/euo/repairOnlineStep1';return false">&nbsp;HOME&nbsp;</button>
+                                <!--<button type="button" class="button_example" onClick="window.location.href='/euo/repairOnlineStep1';return false">NEXT STEP&nbsp;&nbsp;&#xe800;</button>-->
+                                <button type="submit" class="btn btn-primary button_example">NEXT STEP&nbsp;&nbsp;&#xe800;</button>
+
+                            </div>
+                        </div>
+
+                    </fieldset>
+                </form>
+
+            </div> <!--closing div class="panel-body" -->
+        </div> <!--div class="panel panel-default"-->
+
+    </div> <!--div class="panel-group"-->
+
+    <script>
+
+        /* bootstrap date picker require toggle*/
+        $('.input-group.date').datepicker({
+            todayBtn: true,
+            clearBtn: true,
+            toggleActive: true
+        });
+
+        window.onload = function()
+        {
+
+        }
+
+
+
+
+
+        function postalValid(){
+            var pCode = document.getElementById('postCode').value;
+            var pCodeValid = document.getElementById('postCode').checkValidity();
+            alert('pCodeValid = '+pCodeValid);
+            return pCodeValid;
+        }
+
+    </script>
+
+
+    <footer class="panel-footer">  <!--class="panel-footer"-->
+        <ul >
+            <li class="line"><a href="/euo/repairOnlineLink?link=privacy">Privacy Policy<!--<s:text name="label.PrivacyPolicy" />--></a></li>
+            <li class="line"><a href="/euo/repairOnlineLink?link=term">Terms of Use<!--<s:text name="label.TermsOfUse" />--></a></li>
+            <li class="line"><a href="/euo/repairOnlineLink?link=help">Help / FAQ<!--<s:text name="label.HelpNFAQ" />--></a></li>
+        </ul>
+    </footer>
+</div>
+
+
+<!--</div>--> <!--headerTmplHolder-->
+
+<!--<script src="b ower_components/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>-->
+<script src="node_modules/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+
+<!--
+<script src="b ower_components/moment/moment.js"></script>
+<script src="b ower_components/bootstrap-datepicker-mobile/bootstrap-datepicker-mobile.js"></script>
+-->
+
+
+<script>
+
+</script>
+
+<script>
+    $(function(){
+        $("#headerTmplHolder").load("./headerTmpl.html");
+        //$("#bodyTmplHolder").load("./step1.html");
+    });
+</script>
+
+
+</body>
+</html>

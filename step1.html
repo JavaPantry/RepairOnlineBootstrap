@@ -106,6 +106,14 @@
     }
 </style>
 
+<script type="text/javascript">
+    function handleLunchStatusChange(){
+        var form = document.getElementById('repairForm');
+        var item = form.elements['lunchStatus'];//var item3 = document.getElementById('lunchRadio');
+        var itemValue = item.value;
+        console.log("handleLunchStatusChange lunchStatus = "+itemValue);
+    }
+</script>
 
 <div class="panel-group">
     <div class="panel panel-default">
@@ -124,6 +132,34 @@
             <form class="form-horizontal" data-toggle="validator" id="repairFormStep1" method="post" action="indexStep1.html"
                   onsubmit="document.getElementById('repairFormStep1').submit();">
                 <fieldset>
+
+                    <div class="form-group">
+                        <label class="control-label required col-sm-4" for="ProductTypeahead">Lunch:</label>
+                        <div class="col-sm-8">
+                            <label class="radio-inline"><input type="radio" id="lunchRadio"	name="lunchStatus" value='N' onchange="handleLunchStatusChange();" checked="checked">Open</label>
+                            <label class="radio-inline"><input type="radio" 				name="lunchStatus" value='Y' onchange="handleLunchStatusChange();">Closed</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label class="control-label col-sm-4" for="lunchStart">Lunch hour Start:</label>
+                            <div class="col-sm-8">
+                                <input type="time" class="form-control"
+                                       name="lunchStart" id="lunchStart"
+                                       pattern="[0-9]{1,2}:[0-9]{2}"
+                                       placeholder ="24HH:MM">
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label class="control-label col-sm-4" for="lunchEnd">End:</label>
+                            <div class="col-sm-8">
+                                <input type="time" class="form-control"
+                                       name="lunchEnd" id="lunchEnd"
+                                       pattern="[0-9]{1,2}:[0-9]{2}"
+                                       placeholder ="24HH:MM">
+                            </div>
+                        </div>
+                    </div> <!--row-->
 
 
                     <div class="form-group required">
